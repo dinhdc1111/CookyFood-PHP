@@ -1,0 +1,13 @@
+/* Font SF UI Text */
+@font-face {
+    font-family: "San Francisco Display";
+    src: url("../fonts/anFranciscoDisplay-Medium.woff2") format("woff2"),
+        url("./style.css/SanFranciscoDisplay-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+* {
+    box-sizing: border-box;
+    font-family: "San Francisco Display", sans-serif;
+}
