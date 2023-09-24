@@ -133,8 +133,11 @@
 .header .user .action {
     margin-right: 15px;
 }
-.header .user .hotline.view-city {
+.header .user .hotline.view-city,
+.header .user .hotline.login {
     cursor: pointer;
+}
+.header .user .hotline.view-city {
     padding: 0 37px 0 17px;
 }
 .header .user .hotline {
