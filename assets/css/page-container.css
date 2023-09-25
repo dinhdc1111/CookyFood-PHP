@@ -54,7 +54,8 @@
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    gap: 40px;
+    row-gap: 40px;
+    width: 1117px;
 }
 .short-link-list .category-item {
     text-align: center;
