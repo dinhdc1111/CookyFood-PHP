@@ -6,31 +6,6 @@
             </button>
             <div class="collapse navbar-collapse d-lg-block d-xl-block d-sm-none d-md-none d-none" id="navbarSupportedContent">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="dropdown nav-item active">
-                        <a href="#" class="nav-link" data-toggle="dropdown">
-                            <span class="material-icons">notifications</span>
-                            <span class="notification">9</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#">You have 5 new messages</a>
-                            </li>
-                            <li>
-                                <a href="#">You're now friend with Mike</a>
-                            </li>
-                            <li>
-                                <a href="#">Wish Mary on her birthday!</a>
-                            </li>
-                            <li>
-                                <a href="#">5 warnings in Server Console</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="material-icons">apps</span>
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span class="material-icons">person</span>
