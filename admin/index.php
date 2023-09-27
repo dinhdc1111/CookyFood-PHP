@@ -7,16 +7,27 @@ include("./layout/top-navbar.php");
 $req = isset($_GET['req']) ? $_GET['req'] : "dashboard";
 switch ($req) {
     case 'category':
-        include("./category/index.php");
+        $sql = "SELECT * FROM category ORDER BY id DESC";
+        $list_category = pdo_query($sql);
+        include("./category/list.php");
         break;
     case 'category-add':
         if (isset($_POST["submit"]) && $_POST["submit"]) {
             $categoryName = $_POST["categoryName"];
             $sql = "INSERT INTO category(name) VALUES ('$categoryName')";
             pdo_execute($sql);
-            $alert = "Thêm thành công";
+            $message_success = "Đã thêm thành công danh mục";
         }
         include("./category/add.php");
+        break;
+    case 'category-delete':
+        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            $sql = "DELETE FROM category WHERE id =" . $_GET['id'];
+            pdo_execute($sql);
+        }
+        $sql = "SELECT * FROM category ORDER BY id DESC";
+        $list_category = pdo_query($sql);
+        include("./category/list.php");
         break;
     case 'product':
         include("./product/index.php");
