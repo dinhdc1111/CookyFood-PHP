@@ -12,13 +12,13 @@ if (is_array($category)) {
         </ol>
     </nav>
     <a class="text-light text-decoration-none btn btn-primary btn-sm mb-3" href="index.php?req=category">
-        Danh sách danh mục
+        <i class="fa-solid fa-list-ul"></i> Danh sách danh mục
     </a>
     <form action="index.php?req=category-update" method="POST">
         <div class="form-group">
             <input type="hidden" name="id" id="id" class="form-control" value="<?= isset($id) && $id > 0 ? $id : '' ?>">
             <label for="categoryName">Tên danh mục</label>
-            <input type="text" name="categoryName" id="categoryName" class="form-control" value="<?= isset($name) && !empty($name) ? $name : '' ?>">
+            <input type="text" name="categoryName" id="categoryName" class="form-control form-control-sm" value="<?= isset($name) && !empty($name) ? $name : '' ?>">
         </div>
         <?php
         if (isset($message_success) && !empty($message_success)) {

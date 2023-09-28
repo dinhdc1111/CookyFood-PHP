@@ -9,12 +9,12 @@ include('./common.php');
         </ol>
     </nav>
     <a class="text-light text-decoration-none btn btn-primary btn-sm mb-3" href="index.php?req=category">
-        Danh sách danh mục
+        <i class="fa-solid fa-list-ul"></i> Danh sách danh mục
     </a>
-    <form action="index.php?req=category-add" method="POST">
+    <form action="index.php?req=category-add" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="categoryName">Tên danh mục</label>
-            <input type="text" name="categoryName" id="categoryName" class="form-control">
+            <input type="text" name="categoryName" id="categoryName" class="form-control form-control-sm">
         </div>
         <?php
         if (isset($message_success) && !empty($message_success)) {
