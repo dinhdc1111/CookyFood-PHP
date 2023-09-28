@@ -8,61 +8,47 @@ include('./common.php');
             <li class="breadcrumb-item active" aria-current="page">Quản lý danh mục</li>
         </ol>
     </nav>
-    <div class="d-flex align-items-center mb-3">
-        <div class="form-check ml-3">
-            <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
-            <label class="form-check-label" for="checkbox-all">
-                Chọn tất cả
-            </label>
-        </div>
-        <div class="btn-add ml-3">
-            <a class="text-light text-decoration-none btn btn-primary btn-sm" href="index.php?req=category-add">
-                Thêm mới danh mục
-            </a>
-        </div>
+    <div class="btn-add mb-3">
+        <a class="text-light text-decoration-none btn btn-primary btn-sm" href="index.php?req=category-add">
+            <i class="fa-solid fa-plus"></i> Thêm mới danh mục
+        </a>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th class="font-weight-bold w-20px" scope="col">#</th>
-                <th class="font-weight-bold" scope="col">ID</th>
-                <th class="font-weight-bold" scope="col">Tên danh mục</th>
-                <th class="font-weight-bold" scope="col">Hình ảnh</th>
-                <th class="font-weight-bold" scope="col">Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if (!empty($list_category) && is_array($list_category)) {
-                foreach ($list_category as $category) {
-                    extract($category);
-                    $remove_category = "index.php?req=category-delete&id=" . $id;
-                    $detail_category = "index.php?req=category-detail&id=" . $id;
-                    echo '
-            <tr>
-                <td scope="row">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="">
-                </div>
-                </td>
-                <th>' . $id . '</th>
-                <td>' . $name . '</td>
-                <td><img src="https://picsum.photos/200" alt="Danh mục"/></td>
-                <td>
-                    <a href="' . $remove_category . '" title="Xóa" class="btn btn-outline-danger btn-sm border border-0 delete-category-button" data-category-id="' . $id . '"><i class="fa-regular fa-trash-can"></i></a>
-                    <a href="' . $detail_category . '" title="Sửa" class="btn btn-outline-info btn-sm border border-0"><i class="fa-regular fa-pen-to-square"></i></a>
-                </td>
-            </tr>
-            ';
-                }
-            } else {
-                echo '<p>Không có danh mục nào.</p>';
-            }
-            ?>
-
-        </tbody>
-    </table>
-
+    <?php if (isset($list_category) && is_array($list_category) && !empty($list_category)) : ?>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="font-weight-bold w-20px" scope="col">#</th>
+                    <th class="font-weight-bold" scope="col">ID</th>
+                    <th class="font-weight-bold" scope="col">Tên danh mục</th>
+                    <th class="font-weight-bold" scope="col">Hình ảnh</th>
+                    <th class="font-weight-bold" scope="col">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($list_category as $category) : ?>
+                    <?php extract($category); ?>
+                    <tr>
+                        <td scope="row">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                            </div>
+                        </td>
+                        <th><?= $id ?></th>
+                        <td><?= $name ?></td>
+                        <td><img src="https://picsum.photos/200" alt="Danh mục" /></td>
+                        <td>
+                            <a href="index.php?req=category-delete&id=<?= $id ?>" title="Xóa" class="btn btn-outline-danger btn-sm border border-0 delete-category-button" data-category-id="<?= $id ?>"><i class="fa-regular fa-trash-can"></i></a>
+                            <a href="index.php?req=category-detail&id=<?= $id ?>" title="Sửa" class="btn btn-outline-info btn-sm border border-0"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else : ?>
+        <div class="text-center">
+            <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695886519/cooky%20market%20-%20PHP/e2i0tysgmmogurexye75.jpg" width="505px" alt="No data" />
+        </div>
+    <?php endif; ?>
 </div>
 <script>
     function confirmDelete(categoryId) {
