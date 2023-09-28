@@ -33,28 +33,33 @@ include('./common.php');
         </thead>
         <tbody>
             <?php
-            foreach ($list_category as $category) {
-                extract($category);
-                $remove_category = "index.php?req=category-delete&id=" . $id;
-                $update_category = "index.php?req=category-update&id=" . $id;
-                echo '
-                    <tr>
-                        <td scope="row">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="">
-                        </div>
-                        </td>
-                        <th>' . $id . '</th>
-                        <td>' . $name . '</td>
-                        <td><img src="https://picsum.photos/200" alt="Danh mục"/></td>
-                        <td>
-                            <a href="' . $remove_category . '" title="Xóa" class="btn btn-outline-danger btn-sm border border-0 delete-category-button" data-category-id="' . $id . '"><i class="fa-regular fa-trash-can"></i></a>
-                            <a href="' . $update_category . '" title="Sửa" class="btn btn-outline-info btn-sm border border-0"><i class="fa-regular fa-pen-to-square"></i></a>
-                        </td>
-                    </tr>
-                    ';
+            if (!empty($list_category) && is_array($list_category)) {
+                foreach ($list_category as $category) {
+                    extract($category);
+                    $remove_category = "index.php?req=category-delete&id=" . $id;
+                    $detail_category = "index.php?req=category-detail&id=" . $id;
+                    echo '
+            <tr>
+                <td scope="row">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="">
+                </div>
+                </td>
+                <th>' . $id . '</th>
+                <td>' . $name . '</td>
+                <td><img src="https://picsum.photos/200" alt="Danh mục"/></td>
+                <td>
+                    <a href="' . $remove_category . '" title="Xóa" class="btn btn-outline-danger btn-sm border border-0 delete-category-button" data-category-id="' . $id . '"><i class="fa-regular fa-trash-can"></i></a>
+                    <a href="' . $detail_category . '" title="Sửa" class="btn btn-outline-info btn-sm border border-0"><i class="fa-regular fa-pen-to-square"></i></a>
+                </td>
+            </tr>
+            ';
+                }
+            } else {
+                echo '<p>Không có danh mục nào.</p>';
             }
             ?>
+
         </tbody>
     </table>
 
