@@ -2,6 +2,7 @@
 include("../dao/pdo.php");
 include("../dao/category.php");
 include("../dao/product.php");
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 include("./layout/header-admin.php");
 include("./layout/sidebar-admin.php");
@@ -16,7 +17,12 @@ switch ($req) {
     case 'category-add':
         if (isset($_POST["submit"]) && $_POST["submit"]) {
             $categoryName = $_POST["categoryName"];
-            category_insert($categoryName);
+
+            $image = $_FILES['image']['name'];
+            $target_dir = "../uploads/";
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+            category_insert($categoryName, $image);
             $message_success = "Đã thêm thành công danh mục";
         }
         include("./category/add.php");
@@ -38,7 +44,12 @@ switch ($req) {
         if (isset($_POST["submit"]) && $_POST["submit"]) {
             $id = $_POST["id"];
             $categoryName = $_POST["categoryName"];
-            category_update($id, $categoryName);
+
+            $image = $_FILES['image']['name'];
+            $target_dir = "../uploads/";
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+            category_update($id, $categoryName, $image);
             $message_success = "Cập nhật thành công danh mục";
         }
         $list_category = category_select_all();
