@@ -1,16 +1,23 @@
 <?php
 require_once 'pdo.php';
 
-function category_insert($categoryName)
+function category_insert($categoryName, $image)
 {
-    $sql = "INSERT INTO category(name) VALUES ('$categoryName')";
+    $created_at = date('Y-m-d H:i:s');
+    $sql = "INSERT INTO category(name, image, created_at) VALUES ('$categoryName', '$image', '$created_at')";
     pdo_execute($sql);
 }
-function category_update($id, $categoryName)
+function category_update($id, $categoryName, $image)
 {
-    $sql = "UPDATE category SET name='" . $categoryName . "' WHERE id=" . $id;
+    $updated_at = date('Y-m-d H:i:s');
+    if ($image != "") {
+        $sql = "UPDATE category SET name='" . $categoryName . "', image='" . $image . "', updated_at='" . $updated_at . "' WHERE id=" . $id;
+    } else {
+        $sql = "UPDATE category SET name='" . $categoryName . "', updated_at='" . $updated_at . "' WHERE id=" . $id;
+    }
     pdo_execute($sql);
 }
+
 function category_delete($id)
 {
     $sql = "DELETE FROM category WHERE id =" . $id;

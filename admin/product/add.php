@@ -40,9 +40,9 @@ include('./common.php');
             </div>
         </div>
         <div class="form-group">
-                <label for="weight">Trọng lượng (g)</label>
-                <input type="number" name="weight" id="weight" class="form-control form-control-sm">
-            </div>
+            <label for="weight">Trọng lượng (g)</label>
+            <input type="number" name="weight" id="weight" class="form-control form-control-sm">
+        </div>
         <div class="form-group d-flex align-items-center">
             <div>
                 <img class='border rounded' id="preview-image" src='https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg' alt='Không có ảnh' height='115' width='115'>

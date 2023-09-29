@@ -16,15 +16,31 @@ include('./common.php');
             <label for="categoryName">Tên danh mục</label>
             <input type="text" name="categoryName" id="categoryName" class="form-control form-control-sm">
         </div>
+        <div class="form-group d-flex align-items-center">
+            <div>
+                <img class='border rounded' id="preview-image" src='https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg' alt='Không có ảnh' height='115' width='115'>
+                <input class="form-control form-control-sm d-none" type="file" id="image" name="image" onchange="previewImage(this)">
+                <label for="image" class="form-label label-for-file mt-3">
+                    <i class="fa-solid fa-file-image"></i>&nbsp;Chọn ảnh
+                </label>
+            </div>
+        </div>
         <?php
         if (isset($message_success) && !empty($message_success)) {
             displayToastrMessageSuccess($message_success);
         }
         ?>
         <input type="submit" class="btn btn-primary btn-block" name="submit" value="THÊM MỚI" />
-        <!-- <div class="mb-3">
-            <label for="formFile" class="form-label">Chọn ảnh danh mục</label>
-            <input class="form-control" type="file" id="formFile">
-        </div> -->
     </form>
 </div>
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview-image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
