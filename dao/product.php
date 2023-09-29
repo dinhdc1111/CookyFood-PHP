@@ -7,9 +7,14 @@ function product_insert($productName, $price, $discount, $image, $weight, $descr
     $sql = "INSERT INTO product(name, price, discount, image, weight, description, category_id, created_at) VALUES ('$productName', '$price', '$discount', '$image', '$weight', '$description', '$category_id', '$created_at')";
     pdo_execute($sql);
 }
-function product_update($id, $productName)
+function product_update($id, $productName, $price, $discount, $image, $weight, $description, $category_id)
 {
-    $sql = "UPDATE product SET name='" . $productName . "' WHERE id=" . $id;
+    $updated_at = date('Y-m-d H:i:s');
+    if ($image != "") {
+        $sql = "UPDATE product SET name='" . $productName . "', price='" . $price . "', discount='" . $discount . "', image='" . $image . "', weight='" . $weight . "', description='" . $description . "', category_id='" . $category_id . "', updated_at='" . $updated_at . "' WHERE id=" . $id;
+    } else {
+        $sql = "UPDATE product SET name='" . $productName . "', price='" . $price . "', discount='" . $discount . "', weight='" . $weight . "', description='" . $description . "', category_id='" . $category_id . "', updated_at='" . $updated_at . "' WHERE id=" . $id;
+    }
     pdo_execute($sql);
 }
 function product_delete($id)

@@ -83,16 +83,28 @@ switch ($req) {
         if (isset($_GET['id']) && ($_GET['id'] > 0)) {
             $product = product_select_by_id($_GET['id']);
         }
+        $list_category = category_select_all();
         include("./product/update.php");
         break;
     case 'product-update':
         if (isset($_POST["submit"]) && $_POST["submit"]) {
             $id = $_POST["id"];
+            $category_id = $_POST["category_id"];
             $productName = $_POST["productName"];
-            product_update($id, $productName);
+            $price = $_POST["price"];
+            $discount = $_POST["discount"];
+            $weight = $_POST["weight"];
+            $description = $_POST["description"];
+
+            $image = $_FILES['image']['name'];
+            $target_dir = "../uploads/";
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+            product_update($id, $productName, $price, $discount, $image, $weight, $description, $category_id);
             $message_success = "Cập nhật thành công sản phẩm";
         }
         $list_product = product_select_all("", 0);
+        $list_category = category_select_all();
         include("./product/list.php");
         break;
     default:
