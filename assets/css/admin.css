@@ -458,3 +458,18 @@ a:focus {
     font-size: 14px;
     color: #333;
 }
+/* Custom file upload */
+label{
+    font-weight: 600;
+}
+.label-for-file{
+    color: #fff;
+    height: 31px;
+    width: 115px;
+    background-color: #007bff;
+    margin: 0;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

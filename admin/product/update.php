@@ -4,11 +4,11 @@ if (is_array($product)) {
     extract($product);
 }
 // Preview image
-$pathImage = "../uploads/" . $image;
-$showImage = is_file($pathImage)
-    ? "<img class='border rounded' src='{$pathImage}' alt='{$name}'height='100' width='100' style='object-fit: cover'/>"
-    : "<img class='border rounded' src='https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg' alt='Không có ảnh' height='100' width='100'>";
-?>
+$pathImage = isset($image) ? "../uploads/{$image}" : "https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg";
+// $showImage = is_file($pathImage)
+//     ? "<img class='border rounded' src='{$pathImage}' alt='{$name}'height='115' width='115' style='object-fit: cover'/>"
+//     : "<img class='border rounded' src='https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg' alt='Không có ảnh' height='115' width='115'>";
+// ?>
 <div class="p-4">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -20,40 +20,44 @@ $showImage = is_file($pathImage)
         <i class="fa-solid fa-list-ul"></i> Danh sách sản phẩm
     </a>
     <form action="index.php?req=product-update" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <input type="hidden" name="id" id="id" class="form-control" value="<?= isset($id) && $id > 0 ? $id : '' ?>">
-            <label for="productName">Tên sản phẩm</label>
-            <input type="text" name="productName" id="productName" class="form-control form-control-sm" value="<?= $name ?>">
+        <div class="row">
+            <div class="form-group col">
+                <input type="hidden" name="id" id="id" class="form-control" value="<?= isset($id) && $id > 0 ? $id : '' ?>">
+                <label for="productName">Tên sản phẩm</label>
+                <input type="text" name="productName" id="productName" class="form-control form-control-sm" value="<?= $name ?>">
+            </div>
+            <div class="form-group col">
+                <label for="productName">Danh mục</label>
+                <select name="category_id" class="form-control form-control-sm">
+                    <?php
+                    foreach ($list_category as $category) {
+                        extract($category);
+                        echo '<option value="' . $id . '" ' . ($category_id == $id ? 'selected' : '') . '>' . $name . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="row">
             <div class="form-group col">
                 <label for="price">Giá gốc</label>
-                <input type="text" name="price" id="price" class="form-control form-control-sm" value="<?= $price ?>">
+                <input type="number" name="price" id="price" class="form-control form-control-sm" value="<?= $price ?>">
             </div>
             <div class="form-group col">
                 <label for="discount">Giảm giá</label>
-                <input type="text" name="discount" id="discount" class="form-control form-control-sm" value="<?= $discount ?>">
-            </div>
-            <div class="form-group col">
-                <label for="weight">Trọng lượng</label>
-                <input type="text" name="weight" id="weight" class="form-control form-control-sm" value="<?= $weight ?>">
+                <input type="number" name="discount" id="discount" class="form-control form-control-sm" value="<?= $discount ?>">
             </div>
         </div>
         <div class="form-group">
-            <label for="productName">Danh mục sản phẩm</label>
-            <select name="category_id" class="form-select w-25">
-                <?php
-                foreach ($list_category as $category) {
-                    extract($category);
-                    echo '<option value="' . $id . '" ' . ($category_id == $id ? 'selected' : '') . '>' . $name . '</option>';
-                }
-                ?>
-            </select>
+            <label for="weight">Trọng lượng</label>
+            <input type="number" name="weight" id="weight" class="form-control form-control-sm" value="<?= $weight ?>">
         </div>
         <div class="form-group">
-            <label for="image" class="form-label">Chọn ảnh sản phẩm</label>
-            <input class="form-control form-control-sm" type="file" id="image" name="image">
-            <?= $showImage ?>
+            <img class='border rounded' id="preview-image" src="<?= $pathImage ?>" alt="<?= $name ?>" height='115' width='115' style='object-fit: cover'>
+            <input class="form-control form-control-sm d-none" type="file" id="image" name="image" onchange="previewImage(this)">
+            <label for="image" class="form-label label-for-file mt-3">
+                <i class="fa-solid fa-file-image"></i>&nbsp;Chọn ảnh
+            </label>
         </div>
         <div class="form-group">
             <label for="description">Mô tả sản phẩm</label>
@@ -67,3 +71,19 @@ $showImage = is_file($pathImage)
         <input type="submit" class="btn btn-primary btn-block" name="submit" value="CẬP NHẬT" />
     </form>
 </div>
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview-image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(document).ready(function() {
+        $('#image').on('change', function() {
+            previewImage(this);
+        });
+    });
+</script>

@@ -15,7 +15,7 @@ $searchButtonClicked = isset($_POST["search"]) && $_POST["search"];
         </a>
         <!-- Search & Filter -->
         <form class="form-inline" action="index.php?req=product" method="POST">
-            <input type="text" name="keyword" class="form-control form-control-sm mr-1" placeholder="Tìm kiếm...">
+            <input type="text" name="keyword" class="form-control form-control-sm mr-1 " placeholder="Tìm kiếm tên theo từ khóa..." style="width: 200px">
             <select name="category_id" class="form-control form-control-sm mr-1">
                 <option value="0" selected>Tất cả loại món</option>
                 <?php
@@ -52,6 +52,8 @@ $searchButtonClicked = isset($_POST["search"]) && $_POST["search"];
                     <th class="font-weight-bold" scope="col">Giảm giá</th>
                     <th class="font-weight-bold" scope="col">Trọng lượng (g)</th>
                     <th class="font-weight-bold" scope="col">Lượt xem</th>
+                    <th class="font-weight-bold" scope="col">Ngày tạo</th>
+                    <th class="font-weight-bold" scope="col">Ngày cập nhật</th>
                     <th class="font-weight-bold" scope="col">Hành động</th>
                 </tr>
             </thead>
@@ -59,6 +61,11 @@ $searchButtonClicked = isset($_POST["search"]) && $_POST["search"];
                 <?php foreach ($list_product as $product) : ?>
                     <?php
                     extract($product);
+                    // Format date
+                    $formatted_date_create = date('d/m/Y', strtotime($created_at));
+                    $formatted_date_update = ($updated_at == "0000-00-00 00:00:00") 
+                    ? "<small class='text-primary'>Chưa cập nhật</small>" 
+                    : date('d/m/Y', strtotime($updated_at));
                     $pathImage = "../uploads/" . $image;
                     $showImage = is_file($pathImage)
                         ? "<img class='border rounded' src='{$pathImage}' alt='{$name}'height='100' width='100' style='object-fit: cover'/>"
@@ -71,12 +78,14 @@ $searchButtonClicked = isset($_POST["search"]) && $_POST["search"];
                             </div>
                         </td>
                         <th><?= $id ?></th>
-                        <td><?= $name ?></td>
+                        <td class="text-primary"><?= $name ?></td>
                         <td><?= $showImage ?></td>
-                        <td><?= $price ?></td>
-                        <td><?= $discount ?></td>
+                        <td><?= $price?></td>
+                        <td><?= $discount?></td>
                         <td><?= $weight ?></td>
                         <td><?= $view ?></td>
+                        <td><?= $formatted_date_create ?></td>
+                        <td><?= $formatted_date_update ?></td>
                         <td>
                             <a href="index.php?req=product-delete&id=<?= $id ?>" title="Xóa" class="btn btn-outline-danger btn-sm border border-0 delete-product-button" data-product-id="<?= $id ?>"><i class="fa-regular fa-trash-can"></i></a>
                             <a href="index.php?req=product-detail&id=<?= $id ?>" title="Sửa" class="btn btn-outline-info btn-sm border border-0"><i class="fa-regular fa-pen-to-square"></i></a>
@@ -86,7 +95,7 @@ $searchButtonClicked = isset($_POST["search"]) && $_POST["search"];
             </tbody>
         </table>
     <?php else : ?>
-        <div class="text-center">
+        <div class="text-center mt-4">
             <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695886519/cooky%20market%20-%20PHP/e2i0tysgmmogurexye75.jpg" width="505px" alt="No data" />
         </div>
     <?php endif; ?>
