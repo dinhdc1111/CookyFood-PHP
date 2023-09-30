@@ -68,9 +68,9 @@
     padding-top: 10px;
 }
 .text-ellipsis-two-lines {
-    -webkit-box-orient: vertical!important;
-    -webkit-line-clamp: 3!important;
-    text-overflow: ellipsis!important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 3 !important;
+    text-overflow: ellipsis !important;
 }
 /* Product List */
 .group-product-content {
@@ -162,6 +162,21 @@
     display: flex;
     justify-content: space-between;
 }
+.d-flex-align-items-baseline {
+    display: flex;
+    align-items: baseline;
+}
+.product-weight {
+    font-size: 12px;
+    color: #acacac;
+    font-weight: 400;
+    max-width: 140px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 19px;
+}
 .unti-price {
     font-size: 12px;
     color: #acacac;
@@ -178,4 +193,5 @@
     font-size: 16px;
     line-height: normal;
     font-weight: 700;
+    margin-right: 6px;
 }
