@@ -20,60 +20,21 @@
                 <div class="swiper-container swiper-container-pointer-events">
                     <div class="swiper-wrapper">
                         <div class="category-slider">
-                            <div class="category-item">
-                                <div class="icon">
-                                    <img class="img-fit" src="https://image.cooky.vn/ads/s320/3754fd39-40ec-4082-8551-d660bceba51c.png" alt="">
-                                </div>
-                                <div class="label text-ellipsis-two-lines">Món mới</div>
-                            </div>
-                            <div class="category-item">
-                                <div class="icon">
-                                    <img class="img-fit" src="https://image.cooky.vn/ads/s320/3754fd39-40ec-4082-8551-d660bceba51c.png" alt="">
-                                </div>
-                                <div class="label text-ellipsis-two-lines">Món mới</div>
-                            </div>
-                            <div class="category-item">
-                                <div class="icon">
-                                    <img class="img-fit" src="https://image.cooky.vn/ads/s320/3754fd39-40ec-4082-8551-d660bceba51c.png" alt="">
-                                </div>
-                                <div class="label text-ellipsis-two-lines">Món mới</div>
-                            </div>
-                            <div class="category-item">
-                                <div class="icon">
-                                    <img class="img-fit" src="https://image.cooky.vn/ads/s320/3754fd39-40ec-4082-8551-d660bceba51c.png" alt="">
-                                </div>
-                                <div class="label text-ellipsis-two-lines">Món mới</div>
-                            </div>
-                            <div class="category-item">
-                                <div class="icon">
-                                    <img class="img-fit" src="https://image.cooky.vn/ads/s320/3754fd39-40ec-4082-8551-d660bceba51c.png" alt="">
-                                </div>
-                                <div class="label text-ellipsis-two-lines">Món mới</div>
-                            </div>
-                            <div class="category-item">
-                                <div class="icon">
-                                    <img class="img-fit" src="https://image.cooky.vn/ads/s320/3754fd39-40ec-4082-8551-d660bceba51c.png" alt="">
-                                </div>
-                                <div class="label text-ellipsis-two-lines">Món mới</div>
-                            </div>
-                            <div class="category-item">
-                                <div class="icon">
-                                    <img class="img-fit" src="https://image.cooky.vn/ads/s320/3754fd39-40ec-4082-8551-d660bceba51c.png" alt="">
-                                </div>
-                                <div class="label text-ellipsis-two-lines">Món mới</div>
-                            </div>
-                            <div class="category-item">
-                                <div class="icon">
-                                    <img class="img-fit" src="https://image.cooky.vn/ads/s320/3754fd39-40ec-4082-8551-d660bceba51c.png" alt="">
-                                </div>
-                                <div class="label text-ellipsis-two-lines">Món mới</div>
-                            </div>
-                            <div class="category-item">
-                                <div class="icon">
-                                    <img class="img-fit" src="https://image.cooky.vn/ads/s320/3754fd39-40ec-4082-8551-d660bceba51c.png" alt="">
-                                </div>
-                                <div class="label text-ellipsis-two-lines">Món mới</div>
-                            </div>
+                            <?php
+                            foreach ($categoryList as $category) {
+                                extract($category);
+                                $showImage = !empty($image) ? $imagePath . $image : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
+                                $linkCategory = "index.php?req=product&category_id=" . $id;
+                                echo '<div class="category-item">
+                                        <div class="icon">
+                                            <a href="' . $linkCategory . '">
+                                                <img class="img-fit" src="' . $showImage . '" alt="' . $image . '">
+                                            </a>
+                                        </div>
+                                        <div class="label text-ellipsis-two-lines">' . $name . '</div>
+                                    </div>';
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -104,8 +65,8 @@
                                         <div class="price-action">
                                             <div class="product-weight">' . $weight . 'g</div>
                                             <div class="d-flex-align-items-baseline">
-                                                <div class="sale-price">' . $formatCurrencyPrice . '</div>
-                                                <div class="unti-price">' . $formatCurrencyDiscount . '</div>
+                                            <div class="sale-price">' . $formatCurrencyDiscount . '</div>
+                                                <div class="unti-price">' . $formatCurrencyPrice . '</div>
                                             </div>
                                         </div>
                                         <div class="button-add-to-cart" title="Thêm vào giỏ hàng">
@@ -118,29 +79,6 @@
                             ';
                         }
                         ?>
-                        <div class="product-basic-info">
-                            <a class="link-absolute" title="Nạc Dăm Heo Cooky (Thịt Tươi) Đồng Nai" href="https://www.cooky.vn/market/nac-dam-heo-cooky-thit-tuoi-dong-nai-9595"></a>
-                            <div class="cover-box">
-                                <div class="promotion-photo">
-                                    <div class="package-default">
-                                        <img src="https://image.cooky.vn/posproduct/g0/9595/s200x200/c5c2841e-651c-4cf6-bc27-ee86fc7c03d0.png" alt="Sản phẩm" loading="lazy" class="img-fit">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="promotion-name two-lines">Nạc Dăm Heo Cooky (Thịt Tươi) Đồng Nai Nạc Dăm
-                                Heo Cooky (Thịt Tươi) Đồng Nai</div>
-                            <div class="d-flex-center-middle">
-                                <div class="price-action">
-                                    <div class="unti-price">50,000đ</div>
-                                    <div class="sale-price">25,000đ</div>
-                                </div>
-                                <div class="button-add-to-cart" title="Thêm vào giỏ hàng">
-                                    <div>
-                                        <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/r8rvqbn5onuryh7hstio.svg" alt="Thêm vào giỏ hàng">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -32,7 +32,7 @@ function category_delete($id)
 }
 function category_select_all()
 {
-    $sql = "SELECT * FROM category ORDER BY id DESC";
+    $sql = "SELECT * FROM category ORDER BY id ASC";
     $list_category = pdo_query($sql);
     return $list_category;
 }

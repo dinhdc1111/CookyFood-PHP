@@ -65,7 +65,7 @@
 .short-link-list .category-item .label {
     text-align: center;
     font-size: 14px;
-    padding-top: 10px;
+    padding: 10px;
 }
 .text-ellipsis-two-lines {
     -webkit-box-orient: vertical !important;
@@ -143,11 +143,12 @@
 .product-basic-info .promotion-name {
     font-size: 16px;
     font-weight: 700;
-    height: 43px;
+    height: 48px;
     padding-top: 10px;
     position: relative;
     white-space: normal;
-    margin-bottom: 12px;
+    margin-bottom: 5px;
+    line-height: 20px;
 }
 .two-lines {
     -webkit-line-clamp: 2;
@@ -155,6 +156,7 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    -webkit-box-direction: normal;
 }
 .d-flex-center-middle {
     position: relative;
