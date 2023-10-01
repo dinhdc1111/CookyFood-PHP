@@ -4,7 +4,8 @@ include("dao/pdo.php");
 include("dao/product.php");
 include("dao/category.php");
 
-$newProductList = product_new_select_all();
+$newProductList = select_products_by_param("created_at", 12);
+$topViewProductList = select_products_by_param("view", 12);
 $categoryList = category_select_all();
 
 include("site/header-site.php");

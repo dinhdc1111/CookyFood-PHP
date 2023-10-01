@@ -39,20 +39,24 @@
                     </div>
                 </div>
             </div>
+            <!-- New Product List -->
             <div class="group-product-content">
-                <div class="title">Món ăn mới</div>
+                <div class="title">✨ Món ăn mới nhất ✨</div>
                 <div class="content-product-container">
                     <div class="promotion-box">
                         <!-- New Product List -->
                         <?php
                         foreach ($newProductList as $product) {
                             extract($product);
+                            $linkProduct = "index.php?req=product&id=" . $id;
                             $showImage = !empty($image) ? $imagePath . $image : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
                             $formatCurrencyPrice = formatCurrency($price);
                             $formatCurrencyDiscount = formatCurrency($discount);
+
+                            $displayPrice = ($discount == 0) ? $formatCurrencyPrice : $formatCurrencyDiscount;
                             echo '
                                 <div class="product-basic-info">
-                                    <a class="link-absolute" title="' . $name . '" href="https://www.cooky.vn/market/nac-dam-heo-cooky-thit-tuoi-dong-nai-9595"></a>
+                                    <a class="link-absolute" title="' . $name . '" href="' . $linkProduct . '"></a>
                                     <div class="cover-box">
                                         <div class="promotion-photo">
                                             <div class="package-default">
@@ -65,8 +69,61 @@
                                         <div class="price-action">
                                             <div class="product-weight">' . $weight . 'g</div>
                                             <div class="d-flex-align-items-baseline">
-                                            <div class="sale-price">' . $formatCurrencyDiscount . '</div>
-                                                <div class="unti-price">' . $formatCurrencyPrice . '</div>
+                                            <div class="sale-price">' . $displayPrice . '</div>';
+                            echo ($discount == 0)
+                                ? ''
+                                : '<div class="unti-price">' . $formatCurrencyPrice . '</div>';
+                            echo '
+                                            </div>
+                                        </div>
+                                        <div class="button-add-to-cart" title="Thêm vào giỏ hàng">
+                                            <div>
+                                                <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/r8rvqbn5onuryh7hstio.svg" alt="Thêm vào giỏ hàng">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <!-- Product List by view -->
+            <div class="group-product-content">
+                <div class="title">❤️️ Món ăn yêu thích ❤️️</div>
+                <div class="content-product-container">
+                    <div class="promotion-box">
+                        <!-- Product List by view -->
+                        <?php
+                        foreach ($topViewProductList as $product) {
+                            extract($product);
+                            $linkProduct = "index.php?req=product&id=" . $id;
+                            $showImage = !empty($image) ? $imagePath . $image : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
+                            $formatCurrencyPrice = formatCurrency($price);
+                            $formatCurrencyDiscount = formatCurrency($discount);
+
+                            $displayPrice = ($discount == 0) ? $formatCurrencyPrice : $formatCurrencyDiscount;
+                            echo '
+                                <div class="product-basic-info">
+                                    <a class="link-absolute" title="' . $name . '" href="' . $linkProduct . '"></a>
+                                    <div class="cover-box">
+                                        <div class="promotion-photo">
+                                            <div class="package-default">
+                                                <img src="' . $showImage . '" alt="' . $name . '" loading="lazy" class="img-fit">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="promotion-name two-lines">' . $name . '</div>
+                                    <div class="d-flex-center-middle">
+                                        <div class="price-action">
+                                            <div class="product-weight">' . $weight . 'g</div>
+                                            <div class="d-flex-align-items-baseline">
+                                            <div class="sale-price">' . $displayPrice . '</div>';
+                            echo ($discount == 0)
+                                ? ''
+                                : '<div class="unti-price">' . $formatCurrencyPrice . '</div>';
+                            echo '
                                             </div>
                                         </div>
                                         <div class="button-add-to-cart" title="Thêm vào giỏ hàng">

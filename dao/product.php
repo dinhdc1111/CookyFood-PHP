@@ -41,9 +41,9 @@ function product_select_by_id($id)
     $product = pdo_query_one($sql);
     return $product;
 }
-function product_new_select_all()
+function select_products_by_param($orderBy, $limit)
 {
-    $sql = "SELECT * FROM product WHERE 1 ORDER BY created_at DESC LIMIT 0,12";
+    $sql = "SELECT * FROM product WHERE 1 ORDER BY $orderBy DESC LIMIT 0,$limit";
     $list_product = pdo_query($sql);
     return $list_product;
 }
