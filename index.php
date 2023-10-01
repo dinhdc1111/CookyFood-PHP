@@ -12,6 +12,9 @@ include("site/header-site.php");
 if (isset($_GET['req']) && $_GET['req'] != "") {
     $req = $_GET['req'];
     switch ($req) {
+        case 'product-detail':
+            include("site/product-detail.php");
+            break;
         case 'about-us':
             include("site/about-us.php");
             break;

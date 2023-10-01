@@ -48,7 +48,7 @@
                         <?php
                         foreach ($newProductList as $product) {
                             extract($product);
-                            $linkProduct = "index.php?req=product&id=" . $id;
+                            $linkProduct = "index.php?req=product-detail&id=" . $id;
                             $showImage = !empty($image) ? $imagePath . $image : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
                             $formatCurrencyPrice = formatCurrency($price);
                             $formatCurrencyDiscount = formatCurrency($discount);
@@ -98,7 +98,7 @@
                         <?php
                         foreach ($topViewProductList as $product) {
                             extract($product);
-                            $linkProduct = "index.php?req=product&id=" . $id;
+                            $linkProduct = "index.php?req=product-detail&id=" . $id;
                             $showImage = !empty($image) ? $imagePath . $image : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
                             $formatCurrencyPrice = formatCurrency($price);
                             $formatCurrencyDiscount = formatCurrency($discount);
