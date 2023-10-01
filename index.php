@@ -13,7 +13,16 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
     $req = $_GET['req'];
     switch ($req) {
         case 'product-detail':
-            include("site/product-detail.php");
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $id = $_GET['id'];
+                $productDetail = product_select_by_id($id);
+                extract($productDetail);
+                $categoryDetail = category_select_by_id($category_id);
+                $productRelated = related_products($id, $category_id);
+                include("site/product-detail.php");
+            } else {
+                include("site/home-page.php");
+            }
             break;
         case 'about-us':
             include("site/about-us.php");
