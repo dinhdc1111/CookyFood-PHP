@@ -41,6 +41,13 @@ function product_select_by_id($id)
     $product = pdo_query_one($sql);
     return $product;
 }
+// Sản phẩm liên quan
+function related_products($id, $category_id)
+{
+    $sql = "SELECT * FROM product WHERE category_id = " . $category_id . " AND id <>" . $id . " LIMIT 0,6";
+    $list_product_related = pdo_query($sql);
+    return $list_product_related;
+}
 function select_products_by_param($orderBy, $limit)
 {
     $sql = "SELECT * FROM product WHERE 1 ORDER BY $orderBy DESC LIMIT 0,$limit";
