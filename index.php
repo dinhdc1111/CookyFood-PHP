@@ -12,6 +12,16 @@ include("site/header-site.php");
 if (isset($_GET['req']) && $_GET['req'] != "") {
     $req = $_GET['req'];
     switch ($req) {
+        case 'product':
+            if (isset($_GET['category_id']) && $_GET['category_id'] > 0) {
+                $category_id = $_GET['category_id'];
+                $categoryDetail = category_select_by_id($category_id);
+                $productList = product_select_all("", $category_id);
+                include("site/product-list.php");
+            } else {
+                include("site/home-page.php");
+            }
+            break;
         case 'product-detail':
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
