@@ -41,6 +41,15 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 include("site/home-page.php");
             }
             break;
+        case 'search':
+            if (isset($_GET['keyword']) && $_GET['keyword'] !== "") {
+                $searchKeyword = $_GET['keyword'];
+                $productList = product_search_by_keyword($searchKeyword);
+                include("site/search.php");
+            } else {
+                include("site/home-page.php");
+            }
+            break;
         case 'about-us':
             include("site/about-us.php");
             break;

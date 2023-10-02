@@ -59,3 +59,13 @@ function product_select_all_no_param(){
     $list_product = pdo_query($sql);
     return $list_product;
 }
+function product_search_by_keyword($keyword)
+{
+    $sql = "SELECT * FROM product WHERE 1";
+    if ($keyword != "") {
+        $sql .= " AND name LIKE '%" . $keyword . "%'";
+    }
+    $sql .= " ORDER BY id DESC";
+    $list_product = pdo_query($sql);
+    return $list_product;
+}
