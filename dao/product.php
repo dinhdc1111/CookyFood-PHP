@@ -54,3 +54,8 @@ function select_products_by_param($orderBy, $limit)
     $list_product = pdo_query($sql);
     return $list_product;
 }
+function product_select_all_no_param(){
+    $sql = "SELECT * FROM product ORDER BY id DESC";
+    $list_product = pdo_query($sql);
+    return $list_product;
+}

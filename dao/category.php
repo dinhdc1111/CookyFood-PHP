@@ -22,13 +22,13 @@ function category_delete($id)
 {
     $sql = "DELETE FROM category WHERE id =" . $id;
     pdo_execute($sql);
-    // if (is_array($ma_loai)) {
-    //     foreach ($ma_loai as $ma) {
-    //         pdo_execute($sql, $ma);
-    //     }
-    // } else {
-    //     pdo_execute($sql, $ma_loai);
-    // }
+}
+// Ẩn danh mục "Tất cả" HomePage
+function category_select_all_home()
+{
+    $sql = "SELECT * FROM category ORDER BY id ASC LIMIT 1,12";
+    $list_category = pdo_query($sql);
+    return $list_category;
 }
 function category_select_all()
 {

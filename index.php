@@ -6,18 +6,25 @@ include("dao/category.php");
 
 $newProductList = select_products_by_param("created_at", 12);
 $topViewProductList = select_products_by_param("view", 12);
-$categoryList = category_select_all();
+$categoryList = category_select_all_home();
+$categoryListProductPage = category_select_all();
 
 include("site/header-site.php");
 if (isset($_GET['req']) && $_GET['req'] != "") {
     $req = $_GET['req'];
     switch ($req) {
         case 'product':
-            if (isset($_GET['category_id']) && $_GET['category_id'] > 0) {
+            if (isset($_GET['category_id'])) {
                 $category_id = $_GET['category_id'];
-                $categoryDetail = category_select_by_id($category_id);
-                $productList = product_select_all("", $category_id);
-                include("site/product-list.php");
+                if ($category_id == 1) {
+                    $categoryDetail['name'] = 'Tất cả';
+                    $productList = product_select_all_no_param();
+                    include("site/product-list.php");
+                } elseif ($category_id > 0) {
+                    $categoryDetail = category_select_by_id($category_id);
+                    $productList = product_select_all("", $category_id);
+                    include("site/product-list.php");
+                }
             } else {
                 include("site/home-page.php");
             }
