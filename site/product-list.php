@@ -30,7 +30,7 @@
             </div>
             <!-- Product List -->
             <div class="group-product-content">
-                <div class="title">✨ Món ăn - <?= $categoryDetail['name'] ?> ✨</div>
+                <div class="title">✨ Món ăn - <?= $categoryDetail['name'] ?> ✨&nbsp;<small class="total-product"><?= count($productList) ?> sản phẩm</small></div>
                 <div class="content-product-container">
                     <div class="promotion-box">
                         <?php
