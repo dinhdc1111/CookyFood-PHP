@@ -27,6 +27,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://db.onlinewebfonts.com/c/5ad142d0e49ca868b1530c30a47c625f?family=SF+UI+Text+Regular" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Reset CSS -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <!-- Styles -->
@@ -35,6 +36,7 @@
     <link rel="stylesheet" href="assets/css/page-container.css">
     <link rel="stylesheet" href="assets/css/product-detail.css">
     <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/signin-signup.css">
     <link rel="stylesheet" href="vendors/wowJS/css/libs/animate.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <!-- Library -->
@@ -84,7 +86,9 @@
                     </div>
                     <div class="hotline action login">
                         <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/wb5pyhdq2alh6cx8ml82.svg" alt="Login" class="icon">
-                        <span class="user-name">Đăng nhập</span>
+                        <span class="user-name"><a href="index.php?req=login">
+                                Đăng nhập
+                            </a></span>
                     </div>
                 </div>
             </div>

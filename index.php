@@ -50,6 +50,12 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 include("site/home-page.php");
             }
             break;
+        case 'login':
+            include("site/auth/login.php");
+            break;
+        case 'register':
+            include("site/auth/register.php");
+            break;
         case 'about-us':
             include("site/about-us.php");
             break;

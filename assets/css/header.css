@@ -164,3 +164,7 @@
     top: 50%;
     transform: translateY(-50%);
 }
+.user-name a{
+    text-decoration: none !important;
+    color: #fff !important;
+}
