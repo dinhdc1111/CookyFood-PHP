@@ -3,7 +3,7 @@
         <div class="home-page-container">
             <!-- Product List by search -->
             <div class="group-product-content">
-                <div class="title">✨ Sản phẩm theo từ khóa ✨&nbsp;<small class="total-product">(Tìm thấy <b><?= count($productList) ?></b> kết quả)</small></div>
+                <div class="title">✨ Sản phẩm theo từ khóa ✨&nbsp;<small class="total-product">(Tìm thấy <b><?= count($productList) ?></b> kết quả với từ khóa '<span class="font-weight-bold"><?= $searchKeyword ?></span>')</small></div>
                 <div class="content-product-container">
                     <div class="promotion-box">
                         <?php
