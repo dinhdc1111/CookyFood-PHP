@@ -6,20 +6,25 @@
                     <a href="index.php?req=register" class="activeLogin">Đăng ký</a>
                     <a href="index.php?req=login">Đăng nhập</a>
                 </div>
-                <form accept-charset="UTF-8" id="formAcount" method="POST">
+                <form action="index.php?req=register" accept-charset="UTF-8" id="formAcount" method="POST">
                     <div class="form-group input-login">
-                        <input type="text" required="true" placeholder="Họ và tên" name="fullname">
+                        <input type="text" placeholder="Họ và tên" name="username">
                     </div>
                     <div class="form-group input-login">
-                        <input type="email" required="true" placeholder="Email" name="email">
+                        <input type="email" placeholder="Email" name="email">
                     </div>
                     <div class="form-group input-login">
-                        <input type="password" required="true" id="pwd" placeholder="Mật khẩu của bạn" name="password" minlength="6">
+                        <input type="password" id="pwd" placeholder="Mật khẩu của bạn" name="password">
                     </div>
-                    <div class="form-group input-login">
-                        <input type="password" required="true" id="confirmation_pwd" placeholder="Xác nhận mật khẩu của bạn" minlength="6">
-                    </div>
-                    <button class="btn-login-register">Sign Up</button>
+                    <!-- <div class="form-group input-login">
+                        <input type="password" id="confirm_password" placeholder="Xác nhận mật khẩu của bạn">
+                    </div> -->
+                    <?php
+                    if (isset($message_success) && !empty($message_success)) {
+                        displayToastrMessageSuccess($message_success);
+                    }
+                    ?>
+                    <input type="submit" class="btn-login-register" value="Đăng ký" name="submit">
                 </form>
             </div>
         </div>

@@ -3,6 +3,8 @@ include("global.php");
 include("dao/pdo.php");
 include("dao/product.php");
 include("dao/category.php");
+include("dao/account.php");
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 $newProductList = select_products_by_param("created_at", 12);
 $topViewProductList = select_products_by_param("view", 12);
@@ -54,6 +56,14 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             include("site/auth/login.php");
             break;
         case 'register':
+            if (isset($_POST['submit']) && ($_POST['submit'])) {
+                $email = $_POST['email'];
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+
+                account_insert($email, $username, $password);
+                $message_success = "Đăng ký tài khoản thành công";
+            }
             include("site/auth/register.php");
             break;
         case 'about-us':

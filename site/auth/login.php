@@ -6,14 +6,14 @@
                     <a href="index.php?req=login" class="activeLogin">Đăng nhập</a>
                     <a href="index.php?req=register">Đăng ký</a>
                 </div>
-                <form accept-charset="UTF-8" id="formAcount" method="POST">
+                <form action="index.php?req=login" accept-charset="UTF-8" id="formAcount" method="POST">
                     <div class="form-group input-login">
                         <input type="text" placeholder="Nhập email hoặc Tên đăng nhập" name="email">
                     </div>
                     <div class="form-group input-login">
                         <input type="password" id="pwd" placeholder="Mật khẩu" name="password" minlength="6">
                     </div>
-                    <button class="btn-login-register">Đăng nhập</button>
+                    <input type="submit" class="btn-login-register" value="Đăng nhập">
                 </form>
                 <div class="user-foot">
                     <a href="#" class="clearfix">Quên mật khẩu?</a>
