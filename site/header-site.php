@@ -90,9 +90,11 @@
                     </div>
                     <div class="hotline action login">
                         <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/wb5pyhdq2alh6cx8ml82.svg" alt="Login" class="icon">
-                        <span class="user-name"><a href="index.php?req=login">
-                                Đăng nhập
-                            </a></span>
+                        <?php
+                        $username = isset($_SESSION['account']['username']) ? $_SESSION['account']['username'] : 'Đăng nhập';
+                        $url = isset($_SESSION['account']['username']) ? 'info-account' : 'login';
+                        echo '<span class="user-name"><a href="index.php?req=' . $url . '">' . $username . '</a></span>';
+                        ?>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,15 @@
                     <div class="form-group input-login">
                         <input type="password" id="pwd" placeholder="Mật khẩu" name="password" minlength="6">
                     </div>
-                    <input type="submit" class="btn-login-register" value="Đăng nhập">
+                    <?php
+                    if (isset($message_success) && !empty($message_success)) {
+                        displayToastrMessageSuccess($message_success);
+                    }
+                    if (isset($message_error) && !empty($message_error)) {
+                        displayToastrMessageError($message_error);
+                    }
+                    ?>
+                    <input type="submit" class="btn-login-register" value="Đăng nhập" name="submit">
                 </form>
                 <div class="user-foot">
                     <a href="#" class="clearfix">Quên mật khẩu?</a>

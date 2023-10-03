@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include("global.php");
 include("dao/pdo.php");
 include("dao/product.php");
@@ -53,6 +55,20 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             }
             break;
         case 'login':
+            if (isset($_POST['submit']) && ($_POST['submit'])) {
+                $email = $_POST['email'];
+                $password = $_POST['password'];
+                $check_account = account_check($email, $password);
+                if(is_array($check_account)){
+                    $_SESSION['account'] = $check_account;
+                    $message_success = "Đăng nhập thành công";
+                    // header('Location: index.php');
+                    echo '<script>window.location.href = "index.php";</script>';
+                    exit();
+                }else{
+                    $message_error = "Tài khoản không tồn tại";
+                }
+            }
             include("site/auth/login.php");
             break;
         case 'register':
