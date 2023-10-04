@@ -82,6 +82,9 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             }
             include("site/auth/register.php");
             break;
+        case 'profile':
+            include("site/auth/profile.php");
+            break;
         case 'about-us':
             include("site/about-us.php");
             break;

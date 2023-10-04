@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/page-container.css">
     <link rel="stylesheet" href="assets/css/product-detail.css">
+    <link rel="stylesheet" href="assets/css/profile.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/signin-signup.css">
     <link rel="stylesheet" href="vendors/wowJS/css/libs/animate.css">
@@ -92,7 +93,7 @@
                         <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/wb5pyhdq2alh6cx8ml82.svg" alt="Login" class="icon">
                         <?php
                         $username = isset($_SESSION['account']['username']) ? $_SESSION['account']['username'] : 'Đăng nhập';
-                        $url = isset($_SESSION['account']['username']) ? 'info-account' : 'login';
+                        $url = isset($_SESSION['account']['username']) ? 'profile' : 'login';
                         echo '<span class="user-name"><a href="index.php?req=' . $url . '">' . $username . '</a></span>';
                         ?>
                     </div>
