@@ -164,7 +164,15 @@
     top: 50%;
     transform: translateY(-50%);
 }
-.user-name a{
+.user-name a {
     text-decoration: none !important;
     color: #fff !important;
+}
+/* Setup toast */
+.toast-top-right {
+    top: 90px !important;
+}
+.toast-message{
+    font-size: 14px !important;
+    margin-top: 6px !important;
 }

@@ -59,13 +59,13 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
                 $check_account = account_check($email, $password);
-                if(is_array($check_account)){
+                if (is_array($check_account)) {
                     $_SESSION['account'] = $check_account;
                     $message_success = "Đăng nhập thành công";
                     // header('Location: index.php');
                     echo '<script>window.location.href = "index.php";</script>';
                     exit();
-                }else{
+                } else {
                     $message_error = "Tài khoản không tồn tại";
                 }
             }
@@ -84,6 +84,22 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             break;
         case 'profile':
             include("site/auth/profile.php");
+            break;
+        case 'profile-edit':
+            if (isset($_POST['submit']) && ($_POST['submit'])) {
+                $id = $_POST['id'];
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $address = $_POST['address'];
+                $phone = $_POST['phone'];
+
+                account_update($id, $username, $email, $phone, $address);
+                $message_success = "Cập nhật thông tin thành công";
+                $_SESSION['account'] = account_select_by_id($id);
+                // echo '<script>window.location.href = "index.php?req=profile";</script>';
+                // exit();
+            }
+            include("site/auth/profile-edit.php");
             break;
         case 'about-us':
             include("site/about-us.php");
