@@ -22,3 +22,14 @@ function displayToastrMessageWarning($message_warning)
     echo 'toastr.warning("' . $message_warning . '", "Cảnh báo")';
     echo '</script>';
 }
+// PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendors/PHPMailer/src/Exception.php';
+require 'vendors/PHPMailer/src/PHPMailer.php';
+require 'vendors/PHPMailer/src/SMTP.php';
+
+// PHPMailer config
+$SMTP_USERNAME = "phamphuonganh5112002@gmail.com";
+$SMTP_PASSWORD = "xgfdecuhaqggieha";

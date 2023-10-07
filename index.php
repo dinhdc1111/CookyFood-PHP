@@ -105,15 +105,46 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             if (isset($_POST['submit']) && ($_POST['submit'])) {
                 $email = $_POST['email'];
                 $email_check = email_check($email);
+
+                $resetCode = substr(md5(rand(100000, 999999)), 0, 10); // 10
+                reset_code_update($resetCode, $email);
                 if (is_array($email_check)) {
-                    $message_success = "Mật khẩu của bạn là: ".$email_check['password'];
-                }else{
+                    $subject = 'Yêu cầu đặt lại mật khẩu';
+                    $message = 'Mã xác nhận của bạn là: ' . $resetCode;
+                    $emailSent = user_send_reset_password($email, $subject, $message);
+                    if ($emailSent) {
+                        echo '<script>window.location.href = "index.php?req=reset-code&email=' . $email . '";</script>';
+                        exit();
+                    } else {
+                        $message_error = "Có lỗi xảy ra khi gửi email.";
+                    }
+                } else {
                     $message_error = "Tài khoản không tồn tại";
                 }
-                // echo '<script>window.location.href = "index.php?req=profile";</script>';
-                // exit();
             }
             include("site/auth/forgot-password.php");
+            break;
+        case 'reset-code':
+            if (isset($_POST['submit']) && ($_POST['submit'])) {
+                $email = $_POST['email'];
+                $resetCode = $_POST['resetCode'];
+                if (verify_reset_code($email, $resetCode)) {
+                    echo '<script>window.location.href = "index.php?req=reset-password&email=' . $email . '"</script>';
+                    exit();
+                } else {
+                    $message_error = "Mã xác nhận không đúng.";
+                }
+            }
+            include("site/auth/reset-code-form.php");
+            break;
+        case 'reset-password':
+            if (isset($_POST['submit']) && ($_POST['submit'])) {
+                $email = $_POST['email'];
+                $newPassword = $_POST['newPassword'];
+                password_update($newPassword, $email);
+                $message_success = "Cập nhật mật khẩu thành công";
+            }
+            include("site/auth/reset-password-form.php");
             break;
         case 'about-us':
             include("site/about-us.php");
