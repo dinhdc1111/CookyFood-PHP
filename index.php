@@ -101,6 +101,20 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             }
             include("site/auth/profile-edit.php");
             break;
+        case 'forgot-password':
+            if (isset($_POST['submit']) && ($_POST['submit'])) {
+                $email = $_POST['email'];
+                $email_check = email_check($email);
+                if (is_array($email_check)) {
+                    $message_success = "Mật khẩu của bạn là: ".$email_check['password'];
+                }else{
+                    $message_error = "Tài khoản không tồn tại";
+                }
+                // echo '<script>window.location.href = "index.php?req=profile";</script>';
+                // exit();
+            }
+            include("site/auth/forgot-password.php");
+            break;
         case 'about-us':
             include("site/about-us.php");
             break;

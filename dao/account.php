@@ -13,6 +13,12 @@ function account_check($email, $password)
     $account_check = pdo_query_one($sql);
     return $account_check;
 }
+function email_check($email)
+{
+    $sql = "SELECT * FROM account WHERE email='" . $email . "'";
+    $email_check = pdo_query_one($sql);
+    return $email_check;
+}
 function account_update($id, $username, $email, $phone, $address)
 {
     $sql = "UPDATE account SET username='" . $username . "',email='" . $email . "',phone='" . $phone . "',address='" . $address . "' WHERE id = " . $id;

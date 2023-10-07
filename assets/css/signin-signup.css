@@ -4,12 +4,23 @@
     margin: auto;
     border: 1px solid #ccc;
 }
-.activeLogin{
+.activeLogin {
     font-weight: bold;
 }
 .user-nav a.activeLogin,
 .user-nav a:hover {
     border-bottom: 2px solid #10a2f7;
+}
+.title-forgot-password {
+    width: 100%;
+    float: left;
+    text-transform: uppercase;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid transparent;
+    text-decoration: none;
+    color: #000;
 }
 .user-nav a {
     width: 50%;
@@ -45,6 +56,10 @@
     padding: 12px;
     border: none;
     border-bottom: 1px solid #ccc;
+}
+.input-login input:focus {
+    outline: 2px solid #0093e9;
+    border-radius: 8px;
 }
 .btn-login-register {
     display: inline-block;
@@ -120,6 +135,11 @@
     overflow: hidden;
     box-shadow: 0 1px 3px rgb(146 146 146 / 14%);
 }
+.title-forgot-password {
+    border-bottom: 2px solid #10a2f7;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgb(146 146 146 / 14%);
+}
 .user-wrapper #formAcount {
     padding: 20px;
 }
@@ -136,4 +156,14 @@
     text-transform: uppercase;
     font-size: 18px;
     color: #fff;
+}
+/* Forgot password */
+.getPassword{
+    margin-top: 44px;
+}
+.input-getPassword{
+    margin-top: 8px;
+}
+.forgotPassword{
+    width: 100%;
 }

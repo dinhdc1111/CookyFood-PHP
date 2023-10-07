@@ -24,7 +24,7 @@
                     <input type="submit" class="btn-login-register" value="Đăng nhập" name="submit">
                 </form>
                 <div class="user-foot">
-                    <a href="#" class="clearfix">Quên mật khẩu?</a>
+                    <a href="index.php?req=forgot-password" class="clearfix">Quên mật khẩu?</a>
                     <p class="clearfix">Hoặc đăng nhập với</p>
                     <li class="loginFb">
                         <span>
