@@ -39,9 +39,14 @@ function account_delete($id)
     $sql = "DELETE FROM account WHERE id =" . $id;
     pdo_execute($sql);
 }
-function account_update($id, $username, $email, $phone, $address)
+function account_update($id, $username, $email, $phone, $address, $image)
 {
-    $sql = "UPDATE account SET username='" . $username . "',email='" . $email . "',phone='" . $phone . "',address='" . $address . "' WHERE id = " . $id;
+    $updated_at = date('Y-m-d H:i:s');
+    if ($image != "") {
+        $sql = "UPDATE account SET username='" . $username . "',email='" . $email . "',phone='" . $phone . "',image='" . $image . "',address='" . $address . "', updated_at='" . $updated_at . "' WHERE id = " . $id;
+    } else {
+        $sql = "UPDATE account SET username='" . $username . "',email='" . $email . "',phone='" . $phone . "',address='" . $address . "', updated_at='" . $updated_at . "' WHERE id = " . $id;
+    }
     pdo_execute($sql);
 }
 // Danh sách tài khoản chưa xóa mềm
