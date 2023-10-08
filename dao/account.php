@@ -9,7 +9,7 @@ function account_insert($email, $username, $password)
 }
 function account_check($email, $password)
 {
-    $sql = "SELECT * FROM account WHERE email='" . $email . "' AND password='" . $password . "'";
+    $sql = "SELECT * FROM account WHERE email='" . $email . "' AND password='" . $password . "' AND deleted = 0";
     $account_check = pdo_query_one($sql);
     return $account_check;
 }
@@ -19,10 +19,44 @@ function email_check($email)
     $email_check = pdo_query_one($sql);
     return $email_check;
 }
+// Xóa mềm người dùng
+function account_delete_soft($id)
+{
+    $updated_at = date("Y-m-d H:i:s");
+    $sql = "UPDATE account SET deleted = 1, updated_at ='" . $updated_at . "' WHERE id =" . $id;
+    pdo_execute($sql);
+}
+// Revert tài khoản
+function account_revert($id)
+{
+    $updated_at = date("Y-m-d H:i:s");
+    $sql = "UPDATE account SET deleted = 0, updated_at ='" . $updated_at . "' WHERE id =" . $id;
+    pdo_execute($sql);
+}
+// Xóa cứng tài khoản khỏi DB
+function account_delete($id)
+{
+    $sql = "DELETE FROM account WHERE id =" . $id;
+    pdo_execute($sql);
+}
 function account_update($id, $username, $email, $phone, $address)
 {
     $sql = "UPDATE account SET username='" . $username . "',email='" . $email . "',phone='" . $phone . "',address='" . $address . "' WHERE id = " . $id;
     pdo_execute($sql);
+}
+// Danh sách tài khoản chưa xóa mềm
+function account_select_all()
+{
+    $sql = "SELECT * FROM account WHERE deleted = 0 ORDER BY id ASC";
+    $list_account = pdo_query($sql);
+    return $list_account;
+}
+// Danh sách tài khoản bị khóa (Xóa mềm)
+function account_lock_select_all()
+{
+    $sql = "SELECT * FROM account WHERE deleted = 1 ORDER BY id ASC";
+    $list_account = pdo_query($sql);
+    return $list_account;
 }
 function account_select_by_id($id)
 {

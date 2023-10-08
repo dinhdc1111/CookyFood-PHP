@@ -5,10 +5,7 @@ if (is_array($product)) {
 }
 // Preview image
 $pathImage = isset($image) ? "../uploads/{$image}" : "https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg";
-// $showImage = is_file($pathImage)
-//     ? "<img class='border rounded' src='{$pathImage}' alt='{$name}'height='115' width='115' style='object-fit: cover'/>"
-//     : "<img class='border rounded' src='https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg' alt='Không có ảnh' height='115' width='115'>";
-// ?>
+?>
 <div class="p-4">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">

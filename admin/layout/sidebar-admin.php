@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li class="dropdown">
-                <a href="index.php?req=user">
+                <a href="index.php?req=account">
                     <i class="fa-solid fa-users"></i><span>Quản lý người dùng</span>
                 </a>
             </li>

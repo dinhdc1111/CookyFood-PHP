@@ -66,7 +66,7 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                     header('Location: index.php');
                     exit();
                 } else {
-                    $message_error = "Thông tin tài khoản không chính xác";
+                    $message_error = "Thông tin tài khoản không chính xác hoặc đã bị vô hiệu hóa";
                 }
             }
             include("site/auth/login.php");

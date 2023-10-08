@@ -1,5 +1,10 @@
 <?php
+// global variable
+$ROOT_PATH = '/CookyFood-PHP';
+$ADMIN_PATH = "$ROOT_PATH/admin";
+$SITE_PATH = "$ROOT_PATH/site";
 $imagePath = "uploads/";
+
 function formatCurrency($amount)
 {
     return number_format($amount) . 'đ';
