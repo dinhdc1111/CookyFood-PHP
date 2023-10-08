@@ -40,7 +40,7 @@ function password_update($password, $email)
     $sql = "UPDATE account SET password = '" . $password . "', reset_code = '0' WHERE email = '" . $email . "'";
     pdo_execute($sql);
 }
-function user_send_reset_password($email, $subject, $message)
+function user_send_reset_password($email, $resetCode)
 {
     global $SMTP_USERNAME;
     global $SMTP_PASSWORD;
@@ -61,6 +61,18 @@ function user_send_reset_password($email, $subject, $message)
         $mail->setFrom($SMTP_USERNAME, 'CookyFood');
         $mail->addAddress($email);
         $mail->isHTML(true);
+
+        $subject = 'Thiết lập lại mật khẩu đăng nhập CookyFood';
+        $message = "<div style='width: 484px; margin: 0 auto; font-size: 15px;'>";
+        $message .= "<div style='text-align: center; margin-bottom: 37px;'><img src='https://res.cloudinary.com/do9rcgv5s/image/upload/v1696750251/cooky%20market%20-%20PHP/extwq2ppklepp82jtwfh.png' alt='Cong Dinh' width='179px'/></div>";
+        $message .= "Xin chào quý khách, <br><br>";
+        $message .= "Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu CookyFood của bạn.<br><br>";
+        $message .= 'Mã xác nhận của bạn là: <strong style="color: #f22726">' . $resetCode . '</strong><br><br>';
+        $message .= "Nếu bạn không yêu cầu thiết lập lại mật khẩu, vui lòng bỏ qua email này.<br><br>";
+        $message .= "Cảm ơn bạn đã tham gia và đồng hành cùng CookyFood.<br><br><br>";
+        $message .= "Trân trọng, <br>";
+        $message .= "Đội ngũ CookyFood";
+        $message .= "</div>";
 
         $mail->Subject = $subject;
         $mail->Body    = $message;

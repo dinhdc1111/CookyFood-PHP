@@ -66,7 +66,7 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                     header('Location: index.php');
                     exit();
                 } else {
-                    $message_error = "Tài khoản không tồn tại";
+                    $message_error = "Thông tin tài khoản không chính xác";
                 }
             }
             include("site/auth/login.php");
@@ -96,8 +96,6 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 account_update($id, $username, $email, $phone, $address);
                 $message_success = "Cập nhật thông tin thành công";
                 $_SESSION['account'] = account_select_by_id($id);
-                // echo '<script>window.location.href = "index.php?req=profile";</script>';
-                // exit();
             }
             include("site/auth/profile-edit.php");
             break;
@@ -109,19 +107,7 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 $resetCode = substr(md5(rand(100000, 999999)), 0, 10); // 10
                 reset_code_update($resetCode, $email);
                 if (is_array($email_check)) {
-                    $subject = 'Thiết lập lại mật khẩu đăng nhập CookyFood';
-                    $message = "<div style='width: 484px; margin: 0 auto; font-size: 15px;'>";
-                    $message .= "<div style='text-align: center; margin-bottom: 37px;'><img src='https://res.cloudinary.com/do9rcgv5s/image/upload/v1696750251/cooky%20market%20-%20PHP/extwq2ppklepp82jtwfh.png' alt='Cong Dinh' width='179px'/></div>";
-                    $message .= "Xin chào quý khách, <br><br>";
-                    $message .= "Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu CookyFood của bạn.<br><br>";
-                    $message .= 'Mã xác nhận của bạn là: <strong style="color: #f22726">' . $resetCode . '</strong><br><br>';
-                    $message .= "Nếu bạn không yêu cầu thiết lập lại mật khẩu, vui lòng bỏ qua email này.<br><br>";
-                    $message .= "Cảm ơn bạn đã tham gia và đồng hành cùng CookyFood.<br><br><br>";
-                    $message .= "Trân trọng, <br>";
-                    $message .= "Đội ngũ CookyFood";
-                    $message .= "</div>";
-
-                    $emailSent = user_send_reset_password($email, $subject, $message);
+                    $emailSent = user_send_reset_password($email, $resetCode);
                     if ($emailSent) {
                         $_SESSION['email'] = $email;
                         $_SESSION['reset_code'] = $resetCode;
@@ -158,6 +144,11 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 unset($_SESSION['reset_code']);
             }
             include("site/auth/reset-password-form.php");
+            break;
+        case 'logout':
+            session_destroy();
+            header('Location: index.php');
+            exit();
             break;
         case 'about-us':
             include("site/about-us.php");
