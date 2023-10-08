@@ -31,5 +31,5 @@ require 'vendors/PHPMailer/src/PHPMailer.php';
 require 'vendors/PHPMailer/src/SMTP.php';
 
 // PHPMailer config
-$SMTP_USERNAME = "phamphuonganh5112002@gmail.com";
-$SMTP_PASSWORD = "xgfdecuhaqggieha";
+$SMTP_USERNAME = "dinhdcph14290@fpt.edu.vn";
+$SMTP_PASSWORD = "efflqcdnskpoeqms";
