@@ -13,12 +13,6 @@ function account_check($email, $password)
     $account_check = pdo_query_one($sql);
     return $account_check;
 }
-function verify_reset_code($email, $resetCode)
-{
-    $sql = "SELECT * FROM account WHERE email='" . $email . "' AND reset_code='" . $resetCode . "'";
-    $reset_code_check = pdo_query_one($sql);
-    return $reset_code_check;
-}
 function email_check($email)
 {
     $sql = "SELECT * FROM account WHERE email='" . $email . "'";
@@ -43,7 +37,7 @@ function reset_code_update($reset_code, $email)
 }
 function password_update($password, $email)
 {
-    $sql = "UPDATE account SET password = '" . $password . "' WHERE email = '" . $email . "'";
+    $sql = "UPDATE account SET password = '" . $password . "', reset_code = '0' WHERE email = '" . $email . "'";
     pdo_execute($sql);
 }
 function user_send_reset_password($email, $subject, $message)
