@@ -67,11 +67,11 @@ h1.title-user {
 .form-container .input:focus {
     outline: 2px solid #0093e9;
 }
-.form-group-button{
+.form-group-button {
     margin-top: 15px;
     text-align: center;
 }
-.form-group-button .btn{
+.form-group-button .btn {
     display: inline-block;
     padding: 6px 12px;
     margin-bottom: 0;
@@ -89,4 +89,28 @@ h1.title-user {
     border-radius: 4px;
     text-decoration: none;
     color: #000;
+}
+/* Custom file upload */
+#preview-image{
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+label {
+    font-weight: 600;
+}
+.label-for-file {
+    margin-top: 7px !important;
+    color: #fff;
+    height: 31px;
+    width: 115px;
+    background-color: #007bff;
+    margin: 0;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.d-none{
+    display: none;
 }
