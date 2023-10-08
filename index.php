@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 
 include("global.php");
 include("dao/pdo.php");
@@ -62,8 +63,7 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 if (is_array($check_account)) {
                     $_SESSION['account'] = $check_account;
                     $message_success = "Đăng nhập thành công";
-                    // header('Location: index.php');
-                    echo '<script>window.location.href = "index.php";</script>';
+                    header('Location: index.php');
                     exit();
                 } else {
                     $message_error = "Tài khoản không tồn tại";
@@ -113,7 +113,9 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                     $message = 'Mã xác nhận của bạn là: ' . $resetCode;
                     $emailSent = user_send_reset_password($email, $subject, $message);
                     if ($emailSent) {
-                        echo '<script>window.location.href = "index.php?req=reset-code&email=' . $email . '";</script>';
+                        $_SESSION['email'] = $email;
+                        $_SESSION['reset_code'] = $resetCode;
+                        header('Location: index.php?req=reset-code');
                         exit();
                     } else {
                         $message_error = "Có lỗi xảy ra khi gửi email.";
@@ -126,10 +128,8 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             break;
         case 'reset-code':
             if (isset($_POST['submit']) && ($_POST['submit'])) {
-                $email = $_POST['email'];
-                $resetCode = $_POST['resetCode'];
-                if (verify_reset_code($email, $resetCode)) {
-                    echo '<script>window.location.href = "index.php?req=reset-password&email=' . $email . '"</script>';
+                if ($_POST['resetCode'] == $_SESSION['reset_code']) {
+                    header('Location: index.php?req=reset-password');
                     exit();
                 } else {
                     $message_error = "Mã xác nhận không đúng.";
@@ -139,10 +139,13 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             break;
         case 'reset-password':
             if (isset($_POST['submit']) && ($_POST['submit'])) {
-                $email = $_POST['email'];
+                $email = $_SESSION['email'];
                 $newPassword = $_POST['newPassword'];
                 password_update($newPassword, $email);
                 $message_success = "Cập nhật mật khẩu thành công";
+                // Remove $_SESSION after completion
+                unset($_SESSION['email']);
+                unset($_SESSION['reset_code']);
             }
             include("site/auth/reset-password-form.php");
             break;

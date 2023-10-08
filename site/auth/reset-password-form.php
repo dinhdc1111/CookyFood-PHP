@@ -13,8 +13,8 @@
                         displayToastrMessageSuccess($message_success);
                     }
                     ?>
-                    <input type="hidden" name="email" value="<?php echo isset($_GET['email']) ? htmlspecialchars($_GET['email']) : ''; ?>">
-                    <input type="submit" class="btn-login-register resetPassword" value="Đặt lại mật khẩu" name="submit">
+                    <input type="submit" class="btn-login-register resetPassword" value="Xác nhận" name="submit">
+                    <a class="btn-return" href="index.php?req=login" role="button">Quay về</a>
                 </form>
 
             </div>
