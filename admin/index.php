@@ -1,4 +1,7 @@
 <?php
+session_start();
+ob_start();
+
 include("../dao/pdo.php");
 include("../dao/category.php");
 include("../dao/product.php");
@@ -8,6 +11,13 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 include("./layout/header-admin.php");
 include("./layout/sidebar-admin.php");
 include("./layout/top-navbar.php");
+
+// global variable
+$ROOT_PATH = '/CookyFood-PHP';
+$ADMIN_PATH = "$ROOT_PATH/admin";
+$SITE_PATH = "$ROOT_PATH/site";
+$imagePath = "uploads/";
+
 $req = isset($_GET['req']) ? $_GET['req'] : "dashboard";
 switch ($req) {
         // Controller category
@@ -171,7 +181,7 @@ switch ($req) {
         break;
     case 'logout':
         session_destroy();
-        header('Location: index.php');
+        header('Location: ../index.php');
         exit();
         break;
     default:

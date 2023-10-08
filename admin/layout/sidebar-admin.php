@@ -36,7 +36,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="index.php?req=logout">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Đăng xuất</span>
                 </a>
             </li>
