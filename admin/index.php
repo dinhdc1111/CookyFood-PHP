@@ -6,6 +6,7 @@ include("../dao/pdo.php");
 include("../dao/category.php");
 include("../dao/product.php");
 include("../dao/account.php");
+include("../dao/comment.php");
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 include("./layout/header-admin.php");
@@ -183,6 +184,18 @@ switch ($req) {
         }
         $list_account = account_select_all();
         include("./account/list.php");
+        break;
+        // Controller comment
+    case 'comment':
+        $list_comment = comment_select_all(0);
+        include("./comment/list.php");
+        break;
+    case 'comment-delete':
+        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            comment_delete($_GET['id']);
+        }
+        $list_comment = comment_select_all(0);
+        include("./comment/list.php");
         break;
     case 'logout':
         session_destroy();

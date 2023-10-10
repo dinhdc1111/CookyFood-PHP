@@ -21,6 +21,11 @@
                 </a>
             </li>
             <li class="dropdown">
+                <a href="index.php?req=comment">
+                    <i class="fa-regular fa-comment-dots"></i></i><span>Quản lý bình luận</span>
+                </a>
+            </li>
+            <li class="dropdown">
                 <a href="index.php?req=order">
                     <i class="fa-solid fa-bag-shopping"></i><span>Quản lý đơn hàng</span>
                 </a>

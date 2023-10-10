@@ -129,6 +129,7 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             }
             include("site/auth/forgot-password.php");
             break;
+            // Mã xác nhận
         case 'reset-code':
             if (isset($_POST['submit']) && ($_POST['submit'])) {
                 if ($_POST['resetCode'] == $_SESSION['reset_code']) {
@@ -140,6 +141,7 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             }
             include("site/auth/reset-code-form.php");
             break;
+            // Đặt lại mật khẩu
         case 'reset-password':
             if (isset($_POST['submit']) && ($_POST['submit'])) {
                 $email = $_SESSION['email'];
