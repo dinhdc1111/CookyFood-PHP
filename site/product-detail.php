@@ -121,6 +121,19 @@ $displayPrice = ($discount == 0) ? $formatCurrencyPrice : $formatCurrencyDiscoun
                     </div>
                 </div>
             </div>
+            <!-- Comment box -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $("#comment").load("site/comment/comment-form.php", {
+                        id_product: <?= $id ?>,
+                        // Convert array to json
+                        list_comment: <?= json_encode($list_comment) ?>
+                    });
+                });
+            </script>
+            <div id="comment"></div>
+            <!-- Product related -->
             <div class="group-product-content">
                 <div class="title">Sản phẩm liên quan</div>
                 <div class="content-product-container">

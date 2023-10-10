@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="assets/css/product-detail.css">
     <link rel="stylesheet" href="assets/css/profile.css">
     <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/comment-form.css">
     <link rel="stylesheet" href="assets/css/signin-signup.css">
     <link rel="stylesheet" href="vendors/wowJS/css/libs/animate.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />

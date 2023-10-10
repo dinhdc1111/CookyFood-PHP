@@ -1,13 +1,15 @@
 <?php
 session_start();
 ob_start();
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 include("global.php");
 include("dao/pdo.php");
+
 include("dao/product.php");
 include("dao/category.php");
 include("dao/account.php");
-date_default_timezone_set('Asia/Ho_Chi_Minh');
+include("dao/comment.php");
 
 $newProductList = select_products_by_param("created_at", 12);
 $topViewProductList = select_products_by_param("view", 12);
@@ -41,6 +43,7 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 extract($productDetail);
                 $categoryDetail = category_select_by_id($category_id);
                 $productRelated = related_products($id, $category_id);
+                $list_comment = comment_select_all($id);
                 include("site/product-detail.php");
             } else {
                 include("site/home-page.php");
@@ -97,7 +100,6 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 $target_dir = "./uploads/";
                 $target_file = $target_dir . basename($_FILES["image"]["name"]);
                 move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-                
                 account_update($id, $username, $email, $phone, $address, $image);
                 $message_success = "Cập nhật thông tin thành công";
                 $_SESSION['account'] = account_select_by_id($id);
@@ -149,6 +151,17 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 unset($_SESSION['reset_code']);
             }
             include("site/auth/reset-password-form.php");
+            break;
+        case 'add-comment':
+            if (isset($_POST['submit']) && ($_POST['submit'])) {
+                $content = $_POST['content'];
+                $id_product = $_POST['id_product'];
+                $id_user = $_SESSION['account']['id'];
+                $created_at = date('Y-m-d H:i:s');
+                comment_insert($content, $id_user, $id_product, $created_at);
+                header("Location: " . $_SERVER['HTTP_REFERER']);
+            }
+            include("site/comment/comment-form.php");
             break;
         case 'logout':
             session_destroy();
