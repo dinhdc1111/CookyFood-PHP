@@ -80,7 +80,7 @@
                         <img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386250/cooky%20market%20-%20PHP/v9hhpbadxib71owdbfkh.svg" alt="Wishlist">
                     </div>
                     <button class="cart-icon action n-btn" title="Giỏ hàng">
-                        <a href="index.php?req=add-to-cart"><img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386172/cooky%20market%20-%20PHP/fcmcexgvocebzmhuntfm.svg" alt="Cart"></a>
+                        <a href="index.php?req=view-cart"><img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386172/cooky%20market%20-%20PHP/fcmcexgvocebzmhuntfm.svg" alt="Cart"></a>
                     </button>
                     <div class="phone action n-btn">
                         <a href="tel:19002041">

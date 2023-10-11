@@ -59,7 +59,6 @@
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
 .grand-total{
-    float: right;
     padding: 45px 30px 50px;
     border: 1px solid #ebebeb;
     border-radius: 5px;
@@ -126,4 +125,20 @@
     color: #fff;
     border-radius: 50px;
     background-color: #f22726;
+}
+.remove-item-cart{
+    border: none;
+    background: none;
+}
+.remove-item-cart:hover i{
+    color: #f22726;
+}
+.product-name strong{
+    line-height: 20px;
+}
+.no-cart{
+    text-align: center;
+}
+.no-cart img{
+    width: 44%;
 }

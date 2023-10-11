@@ -194,6 +194,19 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             }
             include("site/cart/view-cart.php");
             break;
+        case 'delete-cart':
+            if (isset($_GET['id-cart'])) {
+                // Delete 1 item cart
+                array_splice($_SESSION['cart'],$_GET['id-cart'],1);
+            } else {
+                // Delete all cart
+                $_SESSION['cart'] = [];
+            }
+            header('Location: index.php?req=view-cart');
+            break;
+        case 'view-cart':
+            include("site/cart/view-cart.php");
+            break;
         case 'logout':
             session_destroy();
             header('Location: index.php');
