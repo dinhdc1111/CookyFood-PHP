@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/comment-form.css">
     <link rel="stylesheet" href="assets/css/signin-signup.css">
+    <link rel="stylesheet" href="assets/css/view-cart.css">
     <link rel="stylesheet" href="vendors/wowJS/css/libs/animate.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <!-- Library -->
@@ -79,7 +80,7 @@
                         <img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386250/cooky%20market%20-%20PHP/v9hhpbadxib71owdbfkh.svg" alt="Wishlist">
                     </div>
                     <button class="cart-icon action n-btn" title="Giỏ hàng">
-                        <img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386172/cooky%20market%20-%20PHP/fcmcexgvocebzmhuntfm.svg" alt="Cart">
+                        <a href="index.php?req=add-to-cart"><img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386172/cooky%20market%20-%20PHP/fcmcexgvocebzmhuntfm.svg" alt="Cart"></a>
                     </button>
                     <div class="phone action n-btn">
                         <a href="tel:19002041">

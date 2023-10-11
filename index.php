@@ -11,6 +11,8 @@ include("dao/category.php");
 include("dao/account.php");
 include("dao/comment.php");
 
+if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
+
 $newProductList = select_products_by_param("created_at", 12);
 $topViewProductList = select_products_by_param("view", 12);
 $categoryList = category_select_all_home();
@@ -164,6 +166,33 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 header("Location: " . $_SERVER['HTTP_REFERER']);
             }
             include("site/comment/comment-form.php");
+            break;
+        case 'add-to-cart':
+            // $product_exists = false;
+            // foreach ($_SESSION['cart'] as $key => $item) {
+            //     if ($item[0] == $id) {
+            //         $new_quantity = $item[5] + 1;
+            //         $new_totalMoney = $new_quantity * $price;
+            //         $_SESSION['cart'][$key][5] = $new_quantity; // Cập nhật số lượng
+            //         $_SESSION['cart'][$key][6] = $new_totalMoney; // Cập nhật tổng tiền
+            //         $product_exists = true;
+            //         break;
+            //     }
+            // }
+            if (isset($_POST['add-to-cart']) && ($_POST['add-to-cart'])) {
+                $id = $_POST['id']; // 0
+                $name = $_POST['name']; // 1
+                $price = $_POST['price']; // 2
+                $discount = $_POST['discount']; // 3
+                $weight = $_POST['weight']; // 4
+                $image = $_POST['image']; // 5
+                $quantityDefault = 1; // 6
+                $totalMoney = $quantityDefault * $price; // 7
+
+                $arrayProductAdd = [$id, $name, $price, $discount, $weight, $image, $quantityDefault, $totalMoney];
+                array_push($_SESSION['cart'], $arrayProductAdd);
+            }
+            include("site/cart/view-cart.php");
             break;
         case 'logout':
             session_destroy();

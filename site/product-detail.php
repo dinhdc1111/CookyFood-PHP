@@ -63,16 +63,28 @@ $displayPrice = ($discount == 0) ? $formatCurrencyPrice : $formatCurrencyDiscoun
                         </div>
                     </div>
                     <div class="extra-info-box">
-                        <div class="display-flex btn-cart-box"><button class="btn-add-to-cart n-btn btn-add-to-cart " title="Bấm để thêm vào giỏ hàng">
-                                <div style="position: relative; z-index: 3;"><span class="row-1">
-                                        <div class="icon-total-save"><img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386172/cooky%20market%20-%20PHP/fcmcexgvocebzmhuntfm.svg">
-                                            <div class="badge-cart"></div>
-                                        </div><span class="text display-block">Thêm vào giỏ</span>
-                                    </span></div>
-                            </button><button class="add-item-wrapper n-btn btn-add-to-cart btn-add-to-collection "><span class="row-1">
+                        <div class="display-flex btn-cart-box">
+                            <form action="index.php?req=add-to-cart" method="POST">
+                                <input type="hidden" name="id" value="<?= $id ?>" />
+                                <input type="hidden" name="name" value="<?= $name ?>" />
+                                <input type="hidden" name="price" value="<?= $price ?>" />
+                                <input type="hidden" name="discount" value="<?= $discount ?>" />
+                                <input type="hidden" name="weight" value="<?= $weight ?>" />
+                                <input type="hidden" name="image" value="<?= $image ?>" />
+                                <button type="submit" class="btn-add-to-cart n-btn btn-add-to-cart " title="Bấm để thêm vào giỏ hàng" name="add-to-cart" value="Thêm vào giỏ hàng">
+                                    <div style="position: relative; z-index: 3;"><span class="row-1">
+                                            <div class="icon-total-save"><img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386172/cooky%20market%20-%20PHP/fcmcexgvocebzmhuntfm.svg">
+                                                <div class="badge-cart"></div>
+                                            </div><span class="text display-block">Thêm vào giỏ</span>
+                                        </span></div>
+                                </button>
+                            </form>
+                            <button class="add-item-wrapper n-btn btn-add-to-cart btn-add-to-collection ">
+                                <span class="row-1">
                                     <div class="icon-total-save"><img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1696156375/cooky%20market%20-%20PHP/bccf379ix2tghofzflrk.svg">
                                     </div><span class="text display-block" style="color: rgb(172, 172, 172);">Lưu</span>
-                                </span><span class="row-2"></span></button></div>
+                                </span><span class="row-2"></span></button>
+                        </div>
                         <div class="promo-desc-box"><img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1696156457/cooky%20market%20-%20PHP/n5zycywefbecp4oj3r7b.svg">
                             <div>Ưu đãi áp dụng cho đơn hàng
                                 - Người dùng mới
@@ -170,7 +182,7 @@ $displayPrice = ($discount == 0) ? $formatCurrencyPrice : $formatCurrencyDiscoun
                                 </div>
                                 <div class="button-add-to-cart" title="Thêm vào giỏ hàng">
                                     <div>
-                                        <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/r8rvqbn5onuryh7hstio.svg" alt="Thêm vào giỏ hàng">
+                                        <i class="fa-solid fa-circle-info"></i>
                                     </div>
                                 </div>
                             </div>

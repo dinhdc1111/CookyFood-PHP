@@ -20,7 +20,7 @@
             </div>
             <div class="interlist">
                 <div class="inter-title">💝 Sản phẩm yêu thích</div>
-                <div class="inter-info"><a href="#"><i class="fa-solid fa-heart"></i> Sản phẩm yêu thích</a></div>
+                <div class="inter-info"><a href="#"><i class="fa-solid fa-circle-info"></i> Sản phẩm yêu thích</a></div>
                 <div class="inter-info"><a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử đơn hàng</a></div>
             </div>
         </div>

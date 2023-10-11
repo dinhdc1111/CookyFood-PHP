@@ -72,7 +72,7 @@
                                             </div>
                                             <div class="button-add-to-cart" title="Thêm vào giỏ hàng">
                                                 <div>
-                                                    <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/r8rvqbn5onuryh7hstio.svg" alt="Thêm vào giỏ hàng">
+                                                    <i class="fa-solid fa-circle-info"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,7 +123,7 @@
                                         </div>
                                         <div class="button-add-to-cart" title="Thêm vào giỏ hàng">
                                             <div>
-                                                <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/r8rvqbn5onuryh7hstio.svg" alt="Thêm vào giỏ hàng">
+                                                <i class="fa-solid fa-circle-info"></i>
                                             </div>
                                         </div>
                                     </div>
