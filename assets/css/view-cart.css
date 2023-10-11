@@ -32,6 +32,9 @@
     border-radius: 8px;
     object-fit: cover;
 }
+.content-table tr .product-name{
+    width: 261px;
+}
 .shopping-cart-wrapper {
     display: flex;
     justify-content: space-between;

@@ -33,10 +33,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer-home.css">
     <link rel="stylesheet" href="assets/css/page-container.css">
     <link rel="stylesheet" href="assets/css/product-detail.css">
     <link rel="stylesheet" href="assets/css/profile.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/comment-form.css">
     <link rel="stylesheet" href="assets/css/signin-signup.css">
     <link rel="stylesheet" href="assets/css/view-cart.css">
