@@ -58,7 +58,7 @@
                 </table>
                 <div class="shopping-cart-wrapper">
                     <div class="continue-shopping">
-                        <a href="#">Tiếp tục mua hàng</a>
+                        <a href="index.php">Tiếp tục mua hàng</a>
                     </div>
                     <div class="clear-cart-all">
                         <a href="index.php?req=delete-cart">Xóa giỏ hàng</a>

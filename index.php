@@ -168,36 +168,40 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             include("site/comment/comment-form.php");
             break;
         case 'add-to-cart':
-            // $product_exists = false;
-            // foreach ($_SESSION['cart'] as $key => $item) {
-            //     if ($item[0] == $id) {
-            //         $new_quantity = $item[5] + 1;
-            //         $new_totalMoney = $new_quantity * $price;
-            //         $_SESSION['cart'][$key][5] = $new_quantity; // Cập nhật số lượng
-            //         $_SESSION['cart'][$key][6] = $new_totalMoney; // Cập nhật tổng tiền
-            //         $product_exists = true;
-            //         break;
-            //     }
-            // }
             if (isset($_POST['add-to-cart']) && ($_POST['add-to-cart'])) {
                 $id = $_POST['id']; // 0
-                $name = $_POST['name']; // 1
-                $price = $_POST['price']; // 2
-                $discount = $_POST['discount']; // 3
-                $weight = $_POST['weight']; // 4
-                $image = $_POST['image']; // 5
-                $quantityDefault = 1; // 6
-                $totalMoney = $quantityDefault * $price; // 7
+                // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng không
+                $productExists = false;
+                $cartLength = count($_SESSION['cart']);
+                for ($i = 0; $i < $cartLength; $i++) {
+                    if ($_SESSION['cart'][$i][0] == $id) {
+                        // Sản phẩm đã tồn tại, cập nhật số lượng
+                        $_SESSION['cart'][$i][6] += 1;
+                        $_SESSION['cart'][$i][7] = $_SESSION['cart'][$i][6] * $_SESSION['cart'][$i][2];
+                        $productExists = true;
+                        break;
+                    }
+                }
+                // Sản phẩm không tồn tại, thêm mới vào giỏ hàng
+                if (!$productExists) {
+                    $name = $_POST['name']; // 1
+                    $price = $_POST['price']; // 2
+                    $discount = $_POST['discount']; // 3
+                    $weight = $_POST['weight']; // 4
+                    $image = $_POST['image']; // 5
+                    $quantityDefault = 1; // 6
+                    $totalMoney = $quantityDefault * $price; // 7
 
-                $arrayProductAdd = [$id, $name, $price, $discount, $weight, $image, $quantityDefault, $totalMoney];
-                array_push($_SESSION['cart'], $arrayProductAdd);
+                    $arrayProductAdd = [$id, $name, $price, $discount, $weight, $image, $quantityDefault, $totalMoney];
+                    array_push($_SESSION['cart'], $arrayProductAdd);
+                }
             }
             include("site/cart/view-cart.php");
             break;
         case 'delete-cart':
             if (isset($_GET['id-cart'])) {
                 // Delete 1 item cart
-                array_splice($_SESSION['cart'],$_GET['id-cart'],1);
+                array_splice($_SESSION['cart'], $_GET['id-cart'], 1);
             } else {
                 // Delete all cart
                 $_SESSION['cart'] = [];
