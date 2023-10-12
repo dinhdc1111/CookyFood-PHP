@@ -70,7 +70,7 @@
                     </div>
                     <h5>Giá gốc: <span><?= $formatTotalPayPriceOriginal ?></span></h5>
                     <h4 class="grand-total-title">Tổng cộng: <span><?= $formatTotalAllCart ?></span></h4>
-                    <a href="#">Tiến hành đặt hàng</a>
+                    <a href="index.php?req=checkout">Tiến hành đặt hàng</a>
                 </div>
             <?php } else { ?>
                 <div class="no-cart"><img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1697029851/jbmsxvpg9wpkte8q5ds9.jpg" alt="Hình ảnh giỏ hàng trống">

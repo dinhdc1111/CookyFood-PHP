@@ -211,6 +211,9 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
         case 'view-cart':
             include("site/cart/view-cart.php");
             break;
+        case 'checkout':
+            include("site/cart/checkout.php");
+            break;
         case 'logout':
             session_destroy();
             header('Location: index.php');
