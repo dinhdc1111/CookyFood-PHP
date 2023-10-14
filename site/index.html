@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="../assets/css/footer-home.css">
     <link rel="stylesheet" href="../assets/css/view-cart.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
+    <link rel="stylesheet" href="../assets/css/invoice.css">
     <link rel="stylesheet" href="../vendors/wowJS/css/libs/animate.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <!-- Library -->
@@ -772,7 +773,7 @@
                     <a href="#">Tiến hành đặt hàng</a>
                 </div> -->
                 <!-- Checkout -->
-                <h1 class="title-user">Thanh toán</h1>
+                <!-- <h1 class="title-user">Thanh toán</h1>
                 <div class="checkout-page">
                     <div class="form-container checkout-page-form">
                         <h2 class="title-user">Thông tin giao hàng</h2>
@@ -810,7 +811,8 @@
                             <h5>Món ăn của bạn 💝</h5>
                             <div class="item-cart-product">
                                 <div class="item-image-order">
-                                    <img src="https://picsum.photos/200/300" alt="Sản phẩm giỏ hàng" width="40px" height="40px">
+                                    <img src="https://picsum.photos/200/300" alt="Sản phẩm giỏ hàng" width="40px"
+                                        height="40px">
                                 </div>
                                 <div class="item-name-order">
                                     <p>Lẩu Thái Hải Sản - Lẩu Nhỏ (Gồm Nước Cốt Lẩu)</p>
@@ -820,7 +822,8 @@
                             </div>
                             <div class="item-cart-product">
                                 <div class="item-image-order">
-                                    <img src="https://picsum.photos/200/300" alt="Sản phẩm giỏ hàng" width="40px" height="40px">
+                                    <img src="https://picsum.photos/200/300" alt="Sản phẩm giỏ hàng" width="40px"
+                                        height="40px">
                                 </div>
                                 <div class="item-name-order">
                                     <p>Lẩu Thái Hải Sản - Lẩu Nhỏ (Gồm Nước Cốt Lẩu)</p>
@@ -834,9 +837,68 @@
                             <h4 class="grand-total-title">Tổng cộng: <span>
                                     <?= $formatTotalAllCart ?>
                                 </span></h4>
-                            <!-- <a href="index.php?req=checkout">Tiến hành đặt hàng</a> -->
+                            <a href="index.php?req=checkout">Tiến hành đặt hàng</a>
                         </div>
                     </div>
+                </div>
+                <div class="radio-list">
+                    <div class="radio-item">
+                        <input type="radio" name="pay-method" id="pay-method-1" value="1">
+                        <label for="pay-method-1">Thanh toán khi nhận hàng (COD)</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="pay-method" id="pay-method-2" value="2">
+                        <label for="pay-method-2">Thanh toán trực tuyến</label>
+                    </div>
+                </div> -->
+                <!-- Invoice -->
+                <div class="invoice-detail">
+                    <h1 class="title-user">Hóa đơn chi tiết</h1>
+                    <div class="form-invoice">
+                        <table border="1">
+                            <tr>
+                                <td colspan="2">Mã đơn: poly__202310140021127418</td>
+                                <td colspan="2" class="text-right"><strong>Thời gian đặt:
+                                        2023-10-14T00:21:12.37</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-center"><img
+                                        src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1697033902/cooky%20market%20-%20PHP/sri9li0oetshdwb4esa4.jpg"
+                                        alt="Logo cooky.vn" width="150px" class="logo-cooky">
+                                    <p class="font-weight-bold"> Thực Phẩm Tươi Sống & Pack Món Nấu Ngay</p>
+                                    <p>Phố Trịnh Văn Bô, Xuân Phương, Nam Từ Liêm, Hà Nội</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <p><strong>Tên khách hàng:</strong> Admin CiDii</p>
+                                    <p><strong>Số điện thoại:</strong> 0383819492</p>
+                                    <p><strong>Địa chỉ:</strong> Hai Duong</p>
+                                    <p><strong>Hình thức thanh toán:</strong> Thanh Toán Khi Nhận Hàng</p>
+                                </td>
+                            </tr>
+                            <tr class="text-center">
+                                <td class="font-weight-bold">STT</td>
+                                <td class="font-weight-bold">Món ăn</td>
+                                <td class="font-weight-bold">Số lượng</td>
+                                <td class="font-weight-bold">Giá</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>1</td>
+                                <td>Đậu Bắp Đồng Nai</td>
+                                <td>1</td>
+                                <td>10.000 VNĐ</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center"><strong>Tổng đơn</strong></td>
+                                <td colspan="2" class="text-center"><strong>34.201 VNĐ</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <form method="post" action="generate_invoice_pdf.php" class="btn-print-invoice">
+                        <input type="submit" name="print_invoice" value="In hóa đơn">
+                    </form>
                 </div>
         </main>
         <footer class="footer">

@@ -10,6 +10,7 @@ include("dao/product.php");
 include("dao/category.php");
 include("dao/account.php");
 include("dao/comment.php");
+include("dao/cart.php");
 
 if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 
@@ -190,7 +191,7 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                     $weight = $_POST['weight']; // 4
                     $image = $_POST['image']; // 5
                     $quantityDefault = 1; // 6
-                    $totalMoney = $quantityDefault * $price; // 7
+                    $totalMoney = ($discount == 0) ? $quantityDefault * $price : $quantityDefault * $discount; // 7
 
                     $arrayProductAdd = [$id, $name, $price, $discount, $weight, $image, $quantityDefault, $totalMoney];
                     array_push($_SESSION['cart'], $arrayProductAdd);
@@ -213,6 +214,32 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             break;
         case 'checkout':
             include("site/cart/checkout.php");
+            break;
+        case 'complete':
+            // Create bill
+            if (isset($_POST['agree-to-order']) && ($_POST['agree-to-order'])) {
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $address = $_POST['address'];
+                $phone = $_POST['phone'];
+                $note = $_POST['note'];
+                $pay_method = $_POST['pay-method'];
+                $order_date = date('Y-m-d H:i:s');
+                $total_order = getTotalOrder();
+
+                $id_bill = bill_insert($username, $address, $phone, $note, $email, $pay_method, $order_date, $total_order);
+                // insert into cart
+                foreach ($_SESSION['cart'] as $cart) {
+                    $priceProduct = ($cart[3] == 0) ? $cart[2] : $cart[3];
+                    cart_insert($_SESSION['account']['id'], $cart[0], $cart[5], $cart[1], $priceProduct, $cart[6], $cart[7], $id_bill);
+                }
+                // Thông tin người mua
+                $customer_invoice_info = bill_select_by_id_bill($id_bill);
+                // Chi tiết hóa đơn giỏ hàng
+                $detail_invoice_info = cart_select_by_id_bill($id_bill);
+                $_SESSION['cart'] = [];
+            }
+            include("site/cart/complete.php");
             break;
         case 'logout':
             session_destroy();
