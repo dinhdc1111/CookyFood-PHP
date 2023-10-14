@@ -34,11 +34,20 @@
     text-align: center;
 }
 
-.btn-print-invoice input {
+.btn-print-invoice input{
     color: #fff;
     background-color: #f22726;
     border: none;
     padding: 6px 12px;
+}
+.back-home{
+    background-color: #ccc;
+    border: none;
+    padding: 6px 12px;
+}
+.back-home a{
+    color: #000000;
+    text-decoration: none;
 }
 .col-2{
     width: 50%;

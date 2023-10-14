@@ -59,5 +59,6 @@ if (isset($detail_invoice_info) && is_array($detail_invoice_info)) {
     <form method="post" action="generate_invoice_pdf.php" class="btn-print-invoice">
         <input type="hidden" value="<?= $id_bill ?>" name="id_bill"/>
         <input type="submit" name="print_invoice" value="In hóa đơn">
+        <button class="back-home"><a href="index.php">Về trang chủ</a></button>
     </form>
 </div>
