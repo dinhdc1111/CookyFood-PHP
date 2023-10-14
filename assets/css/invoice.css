@@ -34,21 +34,40 @@
     text-align: center;
 }
 
-.btn-print-invoice input{
+.btn-print-invoice input {
     color: #fff;
     background-color: #f22726;
     border: none;
     padding: 6px 12px;
+    cursor: pointer;
 }
-.back-home{
+
+.back-home {
     background-color: #ccc;
     border: none;
     padding: 6px 12px;
+    cursor: pointer;
 }
-.back-home a{
+
+.back-home a {
     color: #000000;
     text-decoration: none;
 }
-.col-2{
+
+.col-2 {
     width: 50%;
+}
+
+/* Fireworks */
+.invoice-detail {
+    position: relative;
+}
+
+#canvas {
+    max-width: 1500px;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
 }

@@ -62,3 +62,4 @@ if (isset($detail_invoice_info) && is_array($detail_invoice_info)) {
         <button class="back-home"><a href="index.php">Về trang chủ</a></button>
     </form>
 </div>
+<canvas id="canvas"></canvas>

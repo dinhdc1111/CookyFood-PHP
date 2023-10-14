@@ -218,6 +218,8 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
         case 'complete':
             // Create bill
             if (isset($_POST['agree-to-order']) && ($_POST['agree-to-order'])) {
+                // Người dùng hoặc khách vãng lai
+                $id_user = (isset($_SESSION['account'])) ? $_SESSION['account']['id'] : 0;
                 $username = $_POST['username'];
                 $email = $_POST['email'];
                 $address = $_POST['address'];
@@ -226,8 +228,8 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 $pay_method = $_POST['pay-method'];
                 $order_date = date('Y-m-d H:i:s');
                 $total_order = getTotalOrder();
-
-                $id_bill = bill_insert($username, $address, $phone, $note, $email, $pay_method, $order_date, $total_order);
+                // Create bill
+                $id_bill = bill_insert($id_user, $username, $address, $phone, $note, $email, $pay_method, $order_date, $total_order);
                 // insert into cart
                 foreach ($_SESSION['cart'] as $cart) {
                     $priceProduct = ($cart[3] == 0) ? $cart[2] : $cart[3];
@@ -240,6 +242,10 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 $_SESSION['cart'] = [];
             }
             include("site/cart/complete.php");
+            break;
+        case 'order-history':
+            $list_bill = bill_select_all($_SESSION['account']['id']);
+            include("site/cart/order-history.php");
             break;
         case 'logout':
             session_destroy();

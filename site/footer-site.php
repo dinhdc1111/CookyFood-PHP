@@ -61,6 +61,8 @@
         }
     });
 </script>
+
+<script src="assets/js/fireworks.js"></script>
 </body>
 
 </html>
