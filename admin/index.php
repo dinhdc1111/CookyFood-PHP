@@ -7,6 +7,7 @@ include("../dao/category.php");
 include("../dao/product.php");
 include("../dao/account.php");
 include("../dao/comment.php");
+include("../dao/cart.php");
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 include("./layout/header-admin.php");
@@ -196,6 +197,11 @@ switch ($req) {
         }
         $list_comment = comment_select_all(0);
         include("./comment/list.php");
+        break;
+    case 'order':
+        $keyword = isset($_POST['keyword']) && $_POST['keyword'] != "" ? $_POST['keyword'] : "";
+        $list_bill = bill_select_all_manager($keyword, 0);
+        include("./order/list.php");
         break;
     case 'logout':
         session_destroy();

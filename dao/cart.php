@@ -34,7 +34,19 @@ function cart_select_by_id_bill($id_bill)
 // Lịch sử đơn hàng
 function bill_select_all($id_user)
 {
-    $sql = "SELECT * FROM bill WHERE id_user =" . $id_user;
+    $sql = "SELECT * FROM bill WHERE 1";
+    if ($id_user > 0) $sql .= " AND id_user =" . $id_user;
+    $sql .= " ORDER BY id DESC";
+    $list_bill = pdo_query($sql);
+    return $list_bill;
+}
+// Quản lý đơn hàng và tìm kiếm theo mã đơn hàng
+function bill_select_all_manager($keyword = "", $id_user = 0)
+{
+    $sql = "SELECT * FROM bill WHERE 1";
+    if ($id_user > 0) $sql .= " AND id_user =" . $id_user;
+    if ($keyword != "") $sql .= " AND id  LIKE '%" . $keyword . "'";
+    $sql .= " ORDER BY id DESC";
     $list_bill = pdo_query($sql);
     return $list_bill;
 }
@@ -75,19 +87,19 @@ function get_order_status_class($bill_status)
             $class = "waiting-confirmation";
             break;
         case '1':
-            $class = "processing";
+            $class = "processing text-primary";
             break;
         case '2':
-            $class = "shipping";
+            $class = "shipping text-warning";
             break;
         case '3':
-            $class = "delivered";
+            $class = "delivered text-success";
             break;
         case '4':
-            $class = "refuse"; // Khách hàng hủy
+            $class = "refuse text-danger"; // Khách hàng hủy
             break;
         case '5':
-            $class = "canceled"; // Admin hủy
+            $class = "canceled text-danger"; // Admin hủy
             break;
 
         default:
@@ -96,4 +108,3 @@ function get_order_status_class($bill_status)
     }
     return $class;
 }
-
