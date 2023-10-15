@@ -46,8 +46,12 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                     <span class="item-content text-info">' . $pay_method . '</span>
                 </td>
                 <td class="border-0">
-                    <span class="item-label font-weight-bold">Hóa đơn: </span>
-                    <span class="item-content">In hóa đơn</span>
+                    <span class="item-content">
+                        <form method="post" action="../generate_invoice_pdf.php" class="btn-print-invoice">
+                            <input type="hidden" value="' . $orderId . '" name="id_bill"/>
+                            <input class="btn btn-primary btn-sm" type="submit" name="print_invoice" value="In hóa đơn">
+                        </form>
+                    </span>
                 </td>
             </tr>
         </tbody>
