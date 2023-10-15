@@ -48,7 +48,11 @@ include('./common.php');
                         <td class="text-info"><?= $bill['bill_pay_method'] == 1 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
                         <td>
                             <a href="index.php?req=order-delete&id=<?= $bill['id'] ?>" title="Xóa" class="btn btn-outline-danger btn-sm border border-0 delete-order-button" data-order-id="<?= $bill['id'] ?>"><i class="fa-regular fa-trash-can"></i></a>
-                            <a href="index.php?req=order-detail&id=<?= $bill['id'] ?>" title="Sửa" class="btn btn-outline-info btn-sm border border-0"><i class="fa-regular fa-pen-to-square"></i></a>
+                            <a href="index.php?req=order-detail&id=<?= $bill['id'] ?>" title="Sửa" class="btn btn-outline-warning btn-sm border border-0"><i class="fa-regular fa-pen-to-square"></i></a>
+                            <!-- Button to trigger the modal -->
+                            <button type="button" class="btn btn-outline-info btn-sm border border-0" title="Chi tiết đơn hàng" data-order-id="<?= $bill['id'] ?>" onclick="showOrderDetail(<?= $bill['id'] ?>)">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -59,6 +63,20 @@ include('./common.php');
             <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695886519/cooky%20market%20-%20PHP/e2i0tysgmmogurexye75.jpg" width="505px" alt="No data" />
         </div>
     <?php endif; ?>
+    <!-- Order detail modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Chi tiết đơn hàng</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     function confirmDelete(orderId) {
@@ -87,4 +105,17 @@ include('./common.php');
             });
         });
     });
+
+    function showOrderDetail(orderId) {
+        fetch('order/order-detail.php?id=' + orderId)
+            .then(response => response.text())
+            .then(data => {
+                const modalBody = document.querySelector('.modal-body');
+                modalBody.innerHTML = data;
+                $('#myModal').modal('show');
+            })
+            .catch(error => {
+                console.error('Lỗi khi tải dữ liệu chi tiết đơn hàng: ' + error);
+            });
+    }
 </script>
