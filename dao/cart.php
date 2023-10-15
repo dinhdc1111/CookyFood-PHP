@@ -108,3 +108,9 @@ function get_order_status_class($bill_status)
     }
     return $class;
 }
+// Cập nhật trạng thái đơn hàng
+function update_bill_status($id, $bill_status)
+{
+    $sql = "UPDATE bill SET bill_status = '" . $bill_status . "' WHERE id =" . $id;
+    pdo_query($sql);
+}

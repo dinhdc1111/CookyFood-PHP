@@ -198,9 +198,28 @@ switch ($req) {
         $list_comment = comment_select_all(0);
         include("./comment/list.php");
         break;
+        // Controller order
     case 'order':
         $keyword = isset($_POST['keyword']) && $_POST['keyword'] != "" ? $_POST['keyword'] : "";
         $list_bill = bill_select_all_manager($keyword, 0);
+        include("./order/list.php");
+        break;
+    case 'order-detail':
+        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            $order = bill_select_by_id_bill($_GET['id']);
+        }
+        include("./order/update.php");
+        break;
+    case 'order-update':
+        if (isset($_POST["submit"]) && $_POST["submit"]) {
+            $id = $_POST['id'];
+            $id_user = $_POST['id_user'];
+            $bill_status = $_POST['bill_status'];
+            update_bill_status($id, $bill_status);
+            $message_success = "Cập nhật trạng thái thành công";
+        }
+        // $list_order = bill_select_all($id_user);
+        $list_bill = bill_select_all_manager("", 0);
         include("./order/list.php");
         break;
     case 'logout':

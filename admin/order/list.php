@@ -44,10 +44,9 @@ include('./common.php');
                         <th><?= $bill['id'] ?></th>
                         <td class="text-primary"><?= $bill['bill_name'] ?></td>
                         <td><?= $bill['order_date'] ?></td>
-                        <td class="<?= $classNameStatus ?>"><?= $order_status ?></td>
                         <td class="text-info"><?= $bill['bill_pay_method'] == 1 ? 'Thanh toán khi nhận hàng' : 'Thanh toán online' ?></td>
+                        <td class="<?= $classNameStatus ?>"><?= $order_status ?></td>
                         <td>
-                            <a href="index.php?req=order-delete&id=<?= $bill['id'] ?>" title="Xóa" class="btn btn-outline-danger btn-sm border border-0 delete-order-button" data-order-id="<?= $bill['id'] ?>"><i class="fa-regular fa-trash-can"></i></a>
                             <a href="index.php?req=order-detail&id=<?= $bill['id'] ?>" title="Sửa" class="btn btn-outline-warning btn-sm border border-0"><i class="fa-regular fa-pen-to-square"></i></a>
                             <!-- Button to trigger the modal -->
                             <button type="button" class="btn btn-outline-info btn-sm border border-0" title="Chi tiết đơn hàng" data-order-id="<?= $bill['id'] ?>" onclick="showOrderDetail(<?= $bill['id'] ?>)">
@@ -79,22 +78,6 @@ include('./common.php');
     </div>
 </div>
 <script>
-    function confirmDelete(orderId) {
-        Swal.fire({
-            title: 'Bạn có chắc chắn xóa?',
-            text: 'Bạn sẽ không thể khôi phục lại!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Hủy bỏ',
-            confirmButtonText: 'Xác nhận',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = 'index.php?req=order-delete&id=' + orderId;
-            }
-        });
-    }
     document.addEventListener('DOMContentLoaded', function() {
         const deleteButtons = document.querySelectorAll('.delete-order-button');
         deleteButtons.forEach(function(button) {
