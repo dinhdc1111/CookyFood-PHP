@@ -92,6 +92,7 @@ include('../global.php');
                         <strong class="text-primary"><i class="fa-solid fa-cart-shopping"></i> Thống kê sản phẩm</strong>
                     </h4>
                     <p class="category">Thống kê sản phẩm theo danh mục</p>
+                    <a href="index.php?req=chart"><input class="btn btn-primary btn-sm" value="Xem biểu đồ" /></a>
                 </div>
                 <div class="card-content table-responsive">
                     <table class="table table-hover">

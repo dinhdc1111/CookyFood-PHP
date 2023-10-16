@@ -29,6 +29,11 @@ switch ($req) {
         $list_statistics_comment = statistics_select_all_comment();
         include("./statistics/list.php");
         break;
+    case 'chart':
+        $list_statistics_product = statistics_select_all_product();
+        $list_statistics_comment = statistics_select_all_comment();
+        include("./statistics/chart.php");
+        break;
         // Controller category
     case 'category':
         $list_category = category_select_all();
