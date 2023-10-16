@@ -8,22 +8,22 @@
 
     function drawChart() {
         const data = google.visualization.arrayToDataTable([
-            ["Danh mục", "Số lượng sản phẩm"],
+            ["Sản phẩm", "Lượt bình luận"],
             <?php
-            $total_category = count($list_statistics_product);
+            $total_product = count($list_statistics_comment);
             $index = 1;
-            foreach ($list_statistics_product as $statistics_product) {
-                extract($statistics_product);
-                if ($index == $total_category) $dauphay = "";
+            foreach ($list_statistics_comment as $statistics_comment) {
+                extract($statistics_comment);
+                if ($index == $total_product) $dauphay = "";
                 else $dauphay = ",";
-                echo "['" . $statistics_product['name_category'] . "', " . $statistics_product['count_product'] . "]" . $dauphay;
+                echo "['" . $statistics_comment['product_name'] . "', " . $statistics_comment['count_comment'] . "]" . $dauphay;
                 $index += 1;
             }
             ?>
         ]);
 
         const options = {
-            title: 'Thống kê sản phẩm theo danh mục',
+            title: 'Biểu đồ thống kê bình luận theo sản phẩm',
             is3D: true
         };
 
