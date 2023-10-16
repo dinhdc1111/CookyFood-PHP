@@ -26,6 +26,7 @@ switch ($req) {
         // Controller statistics: Thống kê
     case 'statistics':
         $list_statistics_product = statistics_select_all_product();
+        $list_statistics_comment = statistics_select_all_comment();
         include("./statistics/list.php");
         break;
         // Controller category
@@ -234,6 +235,7 @@ switch ($req) {
         break;
     default:
         $list_statistics_product = statistics_select_all_product();
+        $list_statistics_comment = statistics_select_all_comment();
         include("./statistics/list.php");
         break;
 }

@@ -89,7 +89,7 @@ include('../global.php');
             <div class="card" style="min-height: 485px">
                 <div class="card-header card-header-text">
                     <h4 class="card-title">
-                        <strong class="text-primary">Thống kê sản phẩm</strong>
+                        <strong class="text-primary"><i class="fa-solid fa-cart-shopping"></i> Thống kê sản phẩm</strong>
                     </h4>
                     <p class="category">Thống kê sản phẩm theo danh mục</p>
                 </div>
@@ -99,7 +99,7 @@ include('../global.php');
                             <tr class="text-center">
                                 <th>ID</th>
                                 <th>Danh mục</th>
-                                <th>Số lượng món</th>
+                                <th>Số lượng</th>
                                 <th>Giá thấp nhất</th>
                                 <th>Giá cao nhất</th>
                                 <th>Giá trung bình</th>
@@ -128,49 +128,38 @@ include('../global.php');
         <div class="col-lg-5 col-md-12">
             <div class="card" style="min-height: 485px">
                 <div class="card-header card-header-text">
-                    <h4 class="card-title">Activities</h4>
+                    <h4 class="card-title">
+                        <strong class="text-primary"><i class="fa-regular fa-comment-dots"></i> Thống kê bình luận</strong>
+                    </h4>
+                    <p class="category">Thống kê bình luận người dùng</p>
                 </div>
-                <div class="card-content">
-                    <div class="streamline">
-                        <div class="sl-item sl-primary">
-                            <div class="sl-content">
-                                <small class="text-muted">5 mins ago</small>
-                                <p>Williams has just joined Project X</p>
-                            </div>
-                        </div>
-                        <div class="sl-item sl-danger">
-                            <div class="sl-content">
-                                <small class="text-muted">25 mins ago</small>
-                                <p>Jane has sent a request for access to the project folder</p>
-                            </div>
-                        </div>
-                        <div class="sl-item sl-success">
-                            <div class="sl-content">
-                                <small class="text-muted">40 mins ago</small>
-                                <p>Kate added you to her team</p>
-                            </div>
-                        </div>
-                        <div class="sl-item">
-                            <div class="sl-content">
-                                <small class="text-muted">45 minutes ago</small>
-                                <p>John has finished his task</p>
-                            </div>
-                        </div>
-                        <div class="sl-item sl-warning">
-                            <div class="sl-content">
-                                <small class="text-muted">55 mins ago</small>
-                                <p>Jim shared a folder with you</p>
-                            </div>
-                        </div>
-                        <div class="sl-item">
-                            <div class="sl-content">
-                                <small class="text-muted">60 minutes ago</small>
-                                <p>John has finished his task</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card-content table-responsive">
+                    <table class="table table-hover">
+                        <thead class="text-primary">
+                            <tr class="text-center">
+                                <th>ID</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Lượt</th>
+                                <th>Cũ nhất</th>
+                                <th>Mới nhất</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach ($list_statistics_comment as $statistics_comment) {
+                                extract($statistics_comment);
+                                echo '<tr class="text-center">
+                                    <td>' . $id . '</td>
+                                    <td>' . $product_name . '</td>
+                                    <td>' . $count_comment . '</td>
+                                    <td>' . $comment_old . '</td>
+                                    <td>' . $comment_new . '</td>
+                                </tr>';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
         </div>
     </div>
