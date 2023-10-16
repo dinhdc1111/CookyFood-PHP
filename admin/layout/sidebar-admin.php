@@ -30,11 +30,11 @@
                     <i class="fa-solid fa-bag-shopping"></i><span>Quản lý đơn hàng</span>
                 </a>
             </li>
-            <li class="dropdown">
+            <!-- <li class="dropdown">
                 <a href="index.php?req=feedback">
                     <i class="fa-solid fa-comments"></i><span>Quản lý phản hồi</span>
                 </a>
-            </li>
+            </li> -->
             <li class="dropdown">
                 <a href="index.php?req=account">
                     <i class="fa-solid fa-users"></i><span>Quản lý người dùng</span>
