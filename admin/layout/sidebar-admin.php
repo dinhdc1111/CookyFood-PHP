@@ -7,7 +7,7 @@
         </div>
         <ul class="list-unstyled components">
             <li class="dropdown">
-                <a href="index.php" class="dashboard">
+                <a href="index.php?req=statistics" class="dashboard">
                     <i class="fa-solid fa-chart-simple"></i><span>Quản lý thống kê</span></a>
             </li>
             <li class="dropdown">

@@ -8,6 +8,7 @@ include("../dao/product.php");
 include("../dao/account.php");
 include("../dao/comment.php");
 include("../dao/cart.php");
+include("../dao/statistics.php");
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 include("./layout/header-admin.php");
@@ -22,6 +23,11 @@ $imagePath = "uploads/";
 
 $req = isset($_GET['req']) ? $_GET['req'] : "dashboard";
 switch ($req) {
+        // Controller statistics: Thống kê
+    case 'statistics':
+        $list_statistics_product = statistics_select_all_product();
+        include("./statistics/list.php");
+        break;
         // Controller category
     case 'category':
         $list_category = category_select_all();
@@ -218,7 +224,6 @@ switch ($req) {
             update_bill_status($id, $bill_status);
             $message_success = "Cập nhật trạng thái thành công";
         }
-        // $list_order = bill_select_all($id_user);
         $list_bill = bill_select_all_manager("", 0);
         include("./order/list.php");
         break;
@@ -228,7 +233,8 @@ switch ($req) {
         exit();
         break;
     default:
-        include("./dashboard.php");
+        $list_statistics_product = statistics_select_all_product();
+        include("./statistics/list.php");
         break;
 }
 include("./layout/footer-admin.php");
