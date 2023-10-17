@@ -6,6 +6,8 @@ if (isset($detail_invoice_info) && is_array($detail_invoice_info)) {
     extract($detail_invoice_info);
 }
 ?>
+<h1 class="title-user">❤️️ Cảm ơn bạn ❤️️</h1>
+<p class="content-thanks">Cảm ơn quý khách hàng đã lựa chọn <strong class="refuse">CookyFood</strong> để mua sắm đồ ăn! Chúng tôi rất trân trọng sự ủng hộ của quý vị và hy vọng rằng quý vị sẽ thưởng thức những sản phẩm tuyệt vời mà chúng tôi cung cấp. Nếu quý vị có bất kỳ câu hỏi hoặc phản hồi nào, xin đừng ngần ngại liên hệ với chúng tôi. Chúng tôi luôn sẵn sàng để phục vụ quý vị. Cảm ơn một lần nữa và chúc quý vị có một trải nghiệm mua sắm thú vị cùng <strong class="refuse">CookyFood</strong>! Dưới đây là <span class="processing">hóa đơn chi tiết</span> của bạn.❤️️</p>
 <div class="invoice-detail">
     <h1 class="title-user">Hóa đơn chi tiết</h1>
     <div class="form-invoice">
@@ -57,7 +59,7 @@ if (isset($detail_invoice_info) && is_array($detail_invoice_info)) {
         </table>
     </div>
     <form method="post" action="generate_invoice_pdf.php" class="btn-print-invoice">
-        <input type="hidden" value="<?= $id_bill ?>" name="id_bill"/>
+        <input type="hidden" value="<?= $id_bill ?>" name="id_bill" />
         <input type="submit" name="print_invoice" value="In hóa đơn">
         <button class="back-home"><a href="index.php">Về trang chủ</a></button>
     </form>

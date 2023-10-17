@@ -42,3 +42,9 @@
 .title-pay-method{
     margin: 15px 0 8px;
 }
+.content-thanks{
+    max-width: 900px;
+    margin: 10px auto;
+    line-height: 30px;
+    text-align: justify;
+}
