@@ -2,7 +2,9 @@
     <nav id="sidebar">
         <div class="sidebar-header">
             <h3 class="text-center">
-                <span>Trang quản trị</span>
+                <a class="text-decoration-none" href="../index.php">
+                    <span class="font-weight-bold">Trang quản trị</span>
+                </a>
             </h3>
         </div>
         <ul class="list-unstyled components">
@@ -30,11 +32,6 @@
                     <i class="fa-solid fa-bag-shopping"></i><span>Quản lý đơn hàng</span>
                 </a>
             </li>
-            <!-- <li class="dropdown">
-                <a href="index.php?req=feedback">
-                    <i class="fa-solid fa-comments"></i><span>Quản lý phản hồi</span>
-                </a>
-            </li> -->
             <li class="dropdown">
                 <a href="index.php?req=account">
                     <i class="fa-solid fa-users"></i><span>Quản lý người dùng</span>

@@ -141,20 +141,49 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             include("site/auth/profile.php");
             break;
         case 'profile-edit':
+            // Validate form profile-edit
+            $error = [];
+            $data = [];
             if (isset($_POST['submit']) && ($_POST['submit'])) {
-                $id = $_POST['id'];
-                $username = $_POST['username'];
-                $email = $_POST['email'];
-                $address = $_POST['address'];
-                $phone = $_POST['phone'];
+                $data['username'] = isset($_POST['username']) ? $_POST['username'] : "";
+                $data['email'] = isset($_POST['email']) ? $_POST['email'] : "";
+                $data['address'] = isset($_POST['address']) ? $_POST['address'] : "";
+                $data['phone'] = isset($_POST['phone']) ? $_POST['phone'] : "";
+                // Validate username
+                if (empty($data['username'])) {
+                    $error['username'] = "* Tên người dùng không được để trống";
+                }
+                // Validate email
+                if (empty($data['email'])) {
+                    $error['email'] = "* Email không được để trống";
+                } else if (!preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $data['email'])) {
+                    $error['email'] = '* Vui lòng nhập lại, email không đúng định dạng';
+                }
+                // Validate address
+                if (empty($data['address'])) {
+                    $error['address'] = "* Địa chỉ người dùng không được để trống";
+                }
+                // Validate phone
+                if (empty($data['phone'])) {
+                    $error['phone'] = "* Số điện thoại không được để trống";
+                } else if (!preg_match('/(84|0[3|5|7|8|9])+([0-9]{8})\b/', $data['phone'])) {
+                    $error['phone'] = 'Vui lòng nhập lại, số điện thoại không đúng định dạng';
+                }
+                if (!$error) {
+                    $id = $_POST['id'];
+                    $username = $_POST['username'];
+                    $email = $_POST['email'];
+                    $address = $_POST['address'];
+                    $phone = $_POST['phone'];
 
-                $image = $_FILES['image']['name'];
-                $target_dir = "./uploads/";
-                $target_file = $target_dir . basename($_FILES["image"]["name"]);
-                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-                account_update($id, $username, $email, $phone, $address, $image);
-                $message_success = "Cập nhật thông tin thành công";
-                $_SESSION['account'] = account_select_by_id($id);
+                    $image = $_FILES['image']['name'];
+                    $target_dir = "./uploads/";
+                    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                    account_update($id, $username, $email, $phone, $address, $image);
+                    $message_success = "Cập nhật thông tin thành công";
+                    $_SESSION['account'] = account_select_by_id($id);
+                }
             }
             include("site/auth/profile-edit.php");
             break;

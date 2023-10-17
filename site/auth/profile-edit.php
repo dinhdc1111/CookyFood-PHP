@@ -15,6 +15,9 @@
                     <label class="label" for="username">Họ tên:</label>
                     <input class="input" type="text" name="username" id="username" placeholder="Họ tên" value="<?= $username ?>" />
                 </div>
+                <div style="margin-left: 150px;">
+                    <small class="message-error"><?= isset($error['username']) ? $error['username'] : "" ?></small>
+                </div>
                 <div class="row">
                     <label class="label" for="username">Ảnh đại diện:</label>
                     <div class="form-group">
@@ -27,15 +30,24 @@
                 </div>
                 <div class="row">
                     <label class="label" for="email">Email:</label>
-                    <input class="input" type="email" name="email" id="email" placeholder="Email" value="<?= $email ?>" />
+                    <input class="input" type="text" name="email" id="email" placeholder="Email" value="<?= $email ?>" />
+                </div>
+                <div style="margin-left: 150px;">
+                    <small class="message-error"><?= isset($error['email']) ? $error['email'] : "" ?></small>
                 </div>
                 <div class="row">
                     <label class="label" for="address">Địa chỉ:</label>
                     <input class="input" type="text" name="address" id="address" placeholder="Địa chỉ chi tiết" value="<?= $address ?>" />
                 </div>
+                <div style="margin-left: 150px;">
+                    <small class="message-error"><?= isset($error['address']) ? $error['address'] : "" ?></small>
+                </div>
                 <div class="row">
                     <label class="label" for="phone">Điện thoại:</label>
                     <input class="input" type="text" name="phone" id="phone" placeholder="Số điện thoại" value="<?= $phone ?>" />
+                </div>
+                <div style="margin-left: 150px;">
+                    <small class="message-error"><?= isset($error['phone']) ? $error['phone'] : "" ?></small>
                 </div>
                 <?php
                 if (isset($message_success) && !empty($message_success)) {
