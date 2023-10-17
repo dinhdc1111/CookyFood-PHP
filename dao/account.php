@@ -13,6 +13,11 @@ function account_check($email, $password)
     $account_check = pdo_query_one($sql);
     return $account_check;
 }
+function account_exist($email)
+{
+    $sql = "SELECT count(*) FROM account WHERE email=?";
+    return pdo_query_value($sql, $email) > 0;
+}
 function email_check($email)
 {
     $sql = "SELECT * FROM account WHERE email='" . $email . "'";

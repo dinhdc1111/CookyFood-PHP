@@ -62,17 +62,38 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             }
             break;
         case 'login':
+            // Validate form
+            $error = [];
+            $data = [];
             if (isset($_POST['submit']) && ($_POST['submit'])) {
-                $email = $_POST['email'];
-                $password = $_POST['password'];
-                $check_account = account_check($email, $password);
-                if (is_array($check_account)) {
-                    $_SESSION['account'] = $check_account;
-                    $message_success = "Đăng nhập thành công";
-                    header('Location: index.php');
-                    exit();
-                } else {
-                    $message_error = "Thông tin tài khoản không chính xác hoặc đã bị vô hiệu hóa";
+                $data['email'] = isset($_POST['email']) ? $_POST['email'] : "";
+                $data['password'] = isset($_POST['password']) ? $_POST['password'] : "";
+                // Validate email
+                if (empty($data['email'])) {
+                    $error['email'] = "* Email không được để trống";
+                } else if (!preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $data['email'])) {
+                    $error['email'] = 'Vui lòng nhập lại, email không đúng định dạng';
+                } else if (!account_exist($data['email'])) {
+                    $error['email'] = "* Email chưa được đăng ký thành viên";
+                }
+                // Validate password
+                if (empty($data['password'])) {
+                    $error['password'] = "* Mật khẩu không được để trống";
+                } else if (strlen($data['password']) < 6) {
+                    $error['password'] = "* Mật khẩu phải có ít nhất 6 ký tự";
+                }
+                if (!$error) {
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+                    $check_account = account_check($email, $password);
+                    if (is_array($check_account)) {
+                        $_SESSION['account'] = $check_account;
+                        $message_success = "Đăng nhập thành công";
+                        header('Location: index.php');
+                        exit();
+                    } else {
+                        $message_error = "Thông tin tài khoản không chính xác hoặc đã bị vô hiệu hóa";
+                    }
                 }
             }
             include("site/auth/login.php");

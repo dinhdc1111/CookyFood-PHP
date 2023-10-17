@@ -28,7 +28,7 @@
 }
 
 .waiting-confirmation {
-    color: #c41d7f;
+    color: #f84926;
 }
 
 .processing {
@@ -43,10 +43,14 @@
     color: #87d068;
 }
 
-.refuse {
+.refuse,
+.canceled {
     color: #ff3b3b;
 }
 
-.canceled {
+.message-error {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 12px;
     color: #ff3b3b;
 }

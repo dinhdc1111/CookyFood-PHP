@@ -8,11 +8,13 @@
                 </div>
                 <form action="index.php?req=login" accept-charset="UTF-8" id="formAcount" method="POST">
                     <div class="form-group input-login">
-                        <input type="text" placeholder="Nhập email hoặc Tên đăng nhập" name="email">
+                        <input type="text" placeholder="Nhập email của bạn" name="email">
                     </div>
+                    <small class="message-error"><?= isset($error['email']) ? $error['email'] : "" ?></small>
                     <div class="form-group input-login">
-                        <input type="password" id="pwd" placeholder="Mật khẩu" name="password" minlength="6">
+                        <input type="password" id="pwd" placeholder="********" name="password">
                     </div>
+                    <small class="message-error"><?= isset($error['password']) ? $error['password'] : "" ?></small>
                     <?php
                     if (isset($message_success) && !empty($message_success)) {
                         displayToastrMessageSuccess($message_success);
