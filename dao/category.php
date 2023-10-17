@@ -42,8 +42,8 @@ function category_select_by_id($id)
     $category = pdo_query_one($sql);
     return $category;
 }
-function loai_exist($ma_loai)
+function category_exist($name)
 {
-    $sql = "SELECT count(*) FROM loai WHERE ma_loai=?";
-    return pdo_query_value($sql, $ma_loai) > 0;
+    $sql = "SELECT count(*) FROM category WHERE name=?";
+    return pdo_query_value($sql, $name) > 0;
 }

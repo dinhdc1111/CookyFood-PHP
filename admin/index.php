@@ -43,15 +43,25 @@ switch ($req) {
         include("./category/list.php");
         break;
     case 'category-add':
+        // Validate form category-add
+        $error = [];
+        $data = [];
         if (isset($_POST["submit"]) && $_POST["submit"]) {
-            $categoryName = $_POST["categoryName"];
-
-            $image = $_FILES['image']['name'];
-            $target_dir = "../uploads/";
-            $target_file = $target_dir . basename($_FILES["image"]["name"]);
-            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-            category_insert($categoryName, $image);
-            $message_success = "Đã thêm thành công danh mục";
+            $data['categoryName'] = isset($_POST['categoryName']) ? $_POST['categoryName'] : "";
+            if (empty($data['categoryName'])) {
+                $error['categoryName'] = "* Tên danh mục không được để trống";
+            } else if (category_exist($data['categoryName'])) {
+                $error['categoryName'] = "* Tên danh mục đã tồn tại";
+            }
+            if (!$error) {
+                $categoryName = $_POST["categoryName"];
+                $image = $_FILES['image']['name'];
+                $target_dir = "../uploads/";
+                $target_file = $target_dir . basename($_FILES["image"]["name"]);
+                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                category_insert($categoryName, $image);
+                $message_success = "Đã thêm thành công danh mục";
+            }
         }
         include("./category/add.php");
         break;
@@ -69,16 +79,27 @@ switch ($req) {
         include("./category/update.php");
         break;
     case 'category-update':
+        // Validate form category-update
+        $error = [];
+        $data = [];
         if (isset($_POST["submit"]) && $_POST["submit"]) {
-            $id = $_POST["id"];
-            $categoryName = $_POST["categoryName"];
+            $data['categoryName'] = isset($_POST['categoryName']) ? $_POST['categoryName'] : "";
+            if (empty($data['categoryName'])) {
+                $error['categoryName'] = "* Tên danh mục không được để trống";
+            } else if (category_exist($data['categoryName'])) {
+                $error['categoryName'] = "* Tên danh mục đã tồn tại";
+            }
+            if (!$error) {
+                $id = $_POST["id"];
+                $categoryName = $_POST["categoryName"];
 
-            $image = $_FILES['image']['name'];
-            $target_dir = "../uploads/";
-            $target_file = $target_dir . basename($_FILES["image"]["name"]);
-            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-            category_update($id, $categoryName, $image);
-            $message_success = "Cập nhật thành công danh mục";
+                $image = $_FILES['image']['name'];
+                $target_dir = "../uploads/";
+                $target_file = $target_dir . basename($_FILES["image"]["name"]);
+                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                category_update($id, $categoryName, $image);
+                $message_success = "Cập nhật thành công danh mục";
+            }
         }
         $list_category = category_select_all();
         include("./category/list.php");

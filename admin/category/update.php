@@ -21,6 +21,7 @@ $pathImage = isset($image) ? "../uploads/{$image}" : "https://res.cloudinary.com
             <input type="hidden" name="id" id="id" class="form-control" value="<?= isset($id) && $id > 0 ? $id : '' ?>">
             <label for="categoryName">Tên danh mục</label>
             <input type="text" name="categoryName" id="categoryName" class="form-control form-control-sm" value="<?= isset($name) && !empty($name) ? $name : '' ?>">
+            <small class="text-danger"><?= isset($error['categoryName']) ? $error['categoryName'] : "" ?></small>
         </div>
         <div class="form-group">
             <img class='border rounded' id="preview-image" src="<?= $pathImage ?>" alt="<?= $name ?>" height='115' width='115' style='object-fit: cover'>

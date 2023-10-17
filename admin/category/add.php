@@ -15,6 +15,7 @@ include('./common.php');
         <div class="form-group">
             <label for="categoryName">Tên danh mục</label>
             <input type="text" name="categoryName" id="categoryName" class="form-control form-control-sm">
+            <small class="text-danger"><?= isset($error['categoryName']) ? $error['categoryName'] : "" ?></small>
         </div>
         <div class="form-group d-flex align-items-center">
             <div>
