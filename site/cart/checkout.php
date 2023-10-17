@@ -15,16 +15,16 @@
                         <form action="index.php?req=profile-edit" class="form" method="POST">
                             <input type="hidden" name="id" value="<?= $id ?>" />
                             <div class="row">
-                                <input class="input" type="text" name="username" id="username" placeholder="Họ tên" value="<?= $username ?>" />
+                                <input class="input" type="text" name="username" id="username" placeholder="Họ tên" value="<?= $username ?>" required />
                             </div>
                             <div class="row">
-                                <input class="input" type="email" name="email" id="email" placeholder="Email" value="<?= $email ?>" />
+                                <input class="input" type="email" name="email" id="email" placeholder="Email" value="<?= $email ?>" required />
                             </div>
                             <div class="row">
-                                <input class="input" type="text" name="address" id="address" placeholder="Địa chỉ chi tiết" value="<?= $address ?>" />
+                                <input class="input" type="text" name="address" id="address" placeholder="Địa chỉ chi tiết" value="<?= $address ?>" required />
                             </div>
                             <div class="row">
-                                <input class="input" type="text" name="phone" id="phone" placeholder="Số điện thoại" value="<?= $phone ?>" />
+                                <input class="input" type="text" name="phone" id="phone" placeholder="Số điện thoại" value="<?= $phone ?>" required />
                             </div>
                             <div class="row">
                                 <textarea class="input" name="note" id="note" cols="30" rows="10" placeholder="Ghi chú (Nếu có)"></textarea>
@@ -90,7 +90,7 @@
                             <h4 class="grand-total-title">Tổng cộng: <span>
                                     <?= $formatTotalAllCart ?>
                                 </span></h4>
-                            <input type="submit" value="Tiến hành đặt hàng" class="order-button" name="agree-to-order"/>
+                            <input type="submit" value="Tiến hành đặt hàng" class="order-button" name="agree-to-order" />
                         </div>
                     </div>
                 </div>
