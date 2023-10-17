@@ -16,6 +16,7 @@ include('./common.php');
             <div class="form-group col">
                 <label for="productName">Tên sản phẩm</label>
                 <input type="text" name="productName" id="productName" class="form-control form-control-sm">
+                <small class="text-danger"><?= isset($error['productName']) ? $error['productName'] : "" ?></small>
             </div>
             <div class="form-group col">
                 <label for="productName">Danh mục</label>
@@ -33,15 +34,18 @@ include('./common.php');
             <div class="form-group col">
                 <label for="price">Giá gốc</label>
                 <input type="number" name="price" id="price" class="form-control form-control-sm">
+                <small class="text-danger"><?= isset($error['price']) ? $error['price'] : "" ?></small>
             </div>
             <div class="form-group col">
                 <label for="discount">Giảm giá</label>
                 <input type="number" name="discount" id="discount" class="form-control form-control-sm">
+                <small class="text-danger"><?= isset($error['discount']) ? $error['discount'] : "" ?></small>
             </div>
         </div>
         <div class="form-group">
             <label for="weight">Trọng lượng (g)</label>
             <input type="number" name="weight" id="weight" class="form-control form-control-sm">
+            <small class="text-danger"><?= isset($error['weight']) ? $error['weight'] : "" ?></small>
         </div>
         <div class="form-group d-flex align-items-center">
             <div>

@@ -7,6 +7,11 @@ function product_insert($productName, $price, $discount, $image, $weight, $descr
     $sql = "INSERT INTO product(name, price, discount, image, weight, description, category_id, created_at) VALUES ('$productName', '$price', '$discount', '$image', '$weight', '$description', '$category_id', '$created_at')";
     pdo_execute($sql);
 }
+function product_exist($name)
+{
+    $sql = "SELECT count(*) FROM product WHERE name=?";
+    return pdo_query_value($sql, $name) > 0;
+}
 function product_update($id, $productName, $price, $discount, $image, $weight, $description, $category_id)
 {
     $updated_at = date('Y-m-d H:i:s');
@@ -54,7 +59,8 @@ function select_products_by_param($orderBy, $limit)
     $list_product = pdo_query($sql);
     return $list_product;
 }
-function product_select_all_no_param(){
+function product_select_all_no_param()
+{
     $sql = "SELECT * FROM product ORDER BY id DESC";
     $list_product = pdo_query($sql);
     return $list_product;

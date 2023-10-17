@@ -114,20 +114,49 @@ switch ($req) {
         include("./product/list.php");
         break;
     case 'product-add':
+        // Validate form product-add
+        $error = [];
+        $data = [];
         if (isset($_POST["submit"]) && $_POST["submit"]) {
-            $category_id = $_POST["category_id"];
-            $productName = $_POST["productName"];
-            $price = $_POST["price"];
-            $discount = $_POST["discount"];
-            $weight = $_POST["weight"];
-            $description = $_POST["description"];
+            $data['productName'] = isset($_POST['productName']) ? $_POST['productName'] : "";
+            $data['price'] = isset($_POST['price']) ? $_POST['price'] : "";
+            $data['discount'] = isset($_POST['discount']) ? $_POST['discount'] : "";
+            $data['weight'] = isset($_POST['weight']) ? $_POST['weight'] : "";
+            if (empty($data['productName'])) {
+                $error['productName'] = "* Tên sản phẩm không được để trống";
+            } else if (product_exist($data['productName'])) {
+                $error['productName'] = "* Tên sản phẩm đã tồn tại";
+            }
+            if (empty($data['price'])) {
+                $error['price'] = "* Giá không được để trống";
+            } else if (isset($_POST['price']) && is_numeric($_POST['price']) && $_POST['price'] < 0) {
+                $error['price'] = "* Giá không được âm";
+            }
+            if (empty($data['discount'])) {
+                $error['discount'] = "* Giảm giá không được để trống";
+            } else if (isset($_POST['discount']) && is_numeric($_POST['discount']) && $_POST['discount'] < 0) {
+                $error['discount'] = "* Giảm giá không được âm";
+            }
+            if (empty($data['weight'])) {
+                $error['weight'] = "* Trọng lượng không được để trống";
+            } else if (isset($_POST['weight']) && is_numeric($_POST['weight']) && $_POST['weight'] <= 0) {
+                $error['weight'] = "* Trọng lượng không được âm";
+            }
+            if (!$error) {
+                $category_id = $_POST["category_id"];
+                $productName = $_POST["productName"];
+                $price = $_POST["price"];
+                $discount = $_POST["discount"];
+                $weight = $_POST["weight"];
+                $description = $_POST["description"];
 
-            $image = $_FILES['image']['name'];
-            $target_dir = "../uploads/";
-            $target_file = $target_dir . basename($_FILES["image"]["name"]);
-            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-            product_insert($productName, $price, $discount, $image, $weight, $description, $category_id);
-            $message_success = "Đã thêm thành công sản phẩm";
+                $image = $_FILES['image']['name'];
+                $target_dir = "../uploads/";
+                $target_file = $target_dir . basename($_FILES["image"]["name"]);
+                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                product_insert($productName, $price, $discount, $image, $weight, $description, $category_id);
+                $message_success = "Đã thêm thành công sản phẩm";
+            }
         }
         $list_category = category_select_all();
         include("./product/add.php");
@@ -147,21 +176,50 @@ switch ($req) {
         include("./product/update.php");
         break;
     case 'product-update':
+        // Validate form product-update
+        $error = [];
+        $data = [];
         if (isset($_POST["submit"]) && $_POST["submit"]) {
-            $id = $_POST["id"];
-            $category_id = $_POST["category_id"];
-            $productName = $_POST["productName"];
-            $price = $_POST["price"];
-            $discount = $_POST["discount"];
-            $weight = $_POST["weight"];
-            $description = $_POST["description"];
+            $data['productName'] = isset($_POST['productName']) ? $_POST['productName'] : "";
+            $data['price'] = isset($_POST['price']) ? $_POST['price'] : "";
+            $data['discount'] = isset($_POST['discount']) ? $_POST['discount'] : "";
+            $data['weight'] = isset($_POST['weight']) ? $_POST['weight'] : "";
+            if (empty($data['productName'])) {
+                $error['productName'] = "* Tên sản phẩm không được để trống";
+            } else if (product_exist($data['productName'])) {
+                $error['productName'] = "* Tên sản phẩm đã tồn tại";
+            }
+            if (empty($data['price'])) {
+                $error['price'] = "* Giá không được để trống";
+            } else if (isset($_POST['price']) && is_numeric($_POST['price']) && $_POST['price'] < 0) {
+                $error['price'] = "* Giá không được âm";
+            }
+            if (empty($data['discount'])) {
+                $error['discount'] = "* Giảm giá không được để trống";
+            } else if (isset($_POST['discount']) && is_numeric($_POST['discount']) && $_POST['discount'] < 0) {
+                $error['discount'] = "* Giảm giá không được âm";
+            }
+            if (empty($data['weight'])) {
+                $error['weight'] = "* Trọng lượng không được để trống";
+            } else if (isset($_POST['weight']) && is_numeric($_POST['weight']) && $_POST['weight'] <= 0) {
+                $error['weight'] = "* Trọng lượng không được âm";
+            }
+            if (!$error) {
+                $id = $_POST["id"];
+                $category_id = $_POST["category_id"];
+                $productName = $_POST["productName"];
+                $price = $_POST["price"];
+                $discount = $_POST["discount"];
+                $weight = $_POST["weight"];
+                $description = $_POST["description"];
 
-            $image = $_FILES['image']['name'];
-            $target_dir = "../uploads/";
-            $target_file = $target_dir . basename($_FILES["image"]["name"]);
-            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-            product_update($id, $productName, $price, $discount, $image, $weight, $description, $category_id);
-            $message_success = "Cập nhật thành công sản phẩm";
+                $image = $_FILES['image']['name'];
+                $target_dir = "../uploads/";
+                $target_file = $target_dir . basename($_FILES["image"]["name"]);
+                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                product_update($id, $productName, $price, $discount, $image, $weight, $description, $category_id);
+                $message_success = "Cập nhật thành công sản phẩm";
+            }
         }
         $list_product = product_select_all("", 0);
         $list_category = category_select_all();
