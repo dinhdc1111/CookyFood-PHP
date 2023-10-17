@@ -10,15 +10,15 @@
                     <div class="form-group input-login">
                         <input type="text" placeholder="Họ và tên" name="username">
                     </div>
+                    <small class="message-error"><?= isset($error['username']) ? $error['username'] : "" ?></small>
                     <div class="form-group input-login">
                         <input type="email" placeholder="Email" name="email">
                     </div>
+                    <small class="message-error"><?= isset($error['email']) ? $error['email'] : "" ?></small>
                     <div class="form-group input-login">
-                        <input type="password" id="pwd" placeholder="Mật khẩu của bạn" name="password">
+                        <input type="password" id="pwd" placeholder="********" name="password">
                     </div>
-                    <!-- <div class="form-group input-login">
-                        <input type="password" id="confirm_password" placeholder="Xác nhận mật khẩu của bạn">
-                    </div> -->
+                    <small class="message-error"><?= isset($error['password']) ? $error['password'] : "" ?></small>
                     <?php
                     if (isset($message_success) && !empty($message_success)) {
                         displayToastrMessageSuccess($message_success);

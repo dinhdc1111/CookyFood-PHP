@@ -62,7 +62,7 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             }
             break;
         case 'login':
-            // Validate form
+            // Validate form login
             $error = [];
             $data = [];
             if (isset($_POST['submit']) && ($_POST['submit'])) {
@@ -99,13 +99,41 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             include("site/auth/login.php");
             break;
         case 'register':
+            // Validate form register
+            $error = [];
+            $data = [];
             if (isset($_POST['submit']) && ($_POST['submit'])) {
-                $email = $_POST['email'];
-                $username = $_POST['username'];
-                $password = $_POST['password'];
+                $data['username'] = isset($_POST['username']) ? $_POST['username'] : "";
+                $data['email'] = isset($_POST['email']) ? $_POST['email'] : "";
+                $data['password'] = isset($_POST['password']) ? $_POST['password'] : "";
+                // Validate username
+                if (empty($data['username'])) {
+                    $error['username'] = "* Tên người dùng không được để trống";
+                } else if (username_exist($data['username'])) {
+                    $error['username'] = "* Tên người dùng đã tồn tại trong hệ thống";
+                }
+                // Validate email
+                if (empty($data['email'])) {
+                    $error['email'] = "* Email không được để trống";
+                } else if (!preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $data['email'])) {
+                    $error['email'] = 'Vui lòng nhập lại, email không đúng định dạng';
+                } else if (account_exist($data['email'])) {
+                    $error['email'] = "* Email đã tồn tại trong hệ thống";
+                }
+                // Validate password
+                if (empty($data['password'])) {
+                    $error['password'] = "* Mật khẩu không được để trống";
+                } else if (strlen($data['password']) < 6) {
+                    $error['password'] = "* Mật khẩu phải có ít nhất 6 ký tự";
+                }
+                if (!$error) {
+                    $email = $_POST['email'];
+                    $username = $_POST['username'];
+                    $password = $_POST['password'];
 
-                account_insert($email, $username, $password);
-                $message_success = "Đăng ký tài khoản thành công";
+                    account_insert($email, $username, $password);
+                    $message_success = "Đăng ký tài khoản thành công";
+                }
             }
             include("site/auth/register.php");
             break;
