@@ -6,8 +6,9 @@
                 <form action="index.php?req=forgot-password" accept-charset="UTF-8" id="formAcount" method="POST">
                     <div class="form-group input-login getPassword">
                         <label for="email">* Nhập địa chỉ email:</label>
-                        <input class="input-getPassword" type="email" id="email" placeholder="Email" name="email">
+                        <input class="input-getPassword" type="text" id="email" placeholder="Email" name="email">
                     </div>
+                    <small class="message-error"><?= isset($error['email']) ? $error['email'] : "" ?></small>
                     <?php
                     if (isset($message_success) && !empty($message_success)) {
                         displayToastrMessageSuccess($message_success);

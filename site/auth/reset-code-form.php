@@ -8,14 +8,7 @@
                         <label for="resetCode">* Nhập mã xác nhận:</label>
                         <input class="input-getPassword" type="text" id="resetCode" placeholder="Mã xác nhận" name="resetCode">
                     </div>
-                    <?php
-                    if (isset($message_success) && !empty($message_success)) {
-                        displayToastrMessageSuccess($message_success);
-                    }
-                    if (isset($message_error) && !empty($message_error)) {
-                        displayToastrMessageError($message_error);
-                    }
-                    ?>
+                    <small class="message-error"><?= isset($error['resetCode']) ? $error['resetCode'] : "" ?></small>
                     <input type="submit" class="btn-login-register resetCode" value="Xác nhận" name="submit">
                 </form>
             </div>

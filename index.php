@@ -72,7 +72,7 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
                 if (empty($data['email'])) {
                     $error['email'] = "* Email không được để trống";
                 } else if (!preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $data['email'])) {
-                    $error['email'] = 'Vui lòng nhập lại, email không đúng định dạng';
+                    $error['email'] = '* Vui lòng nhập lại, email không đúng định dạng';
                 } else if (!account_exist($data['email'])) {
                     $error['email'] = "* Email chưa được đăng ký thành viên";
                 }
@@ -159,50 +159,81 @@ if (isset($_GET['req']) && $_GET['req'] != "") {
             include("site/auth/profile-edit.php");
             break;
         case 'forgot-password':
+            // Validate form forgot-password
+            $error = [];
+            $data = [];
             if (isset($_POST['submit']) && ($_POST['submit'])) {
-                $email = $_POST['email'];
-                $email_check = email_check($email);
+                $data['email'] = isset($_POST['email']) ? $_POST['email'] : "";
+                // Validate email
+                if (empty($data['email'])) {
+                    $error['email'] = "* Email không được để trống";
+                } else if (!preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $data['email'])) {
+                    $error['email'] = '* Vui lòng nhập lại, email không đúng định dạng';
+                } else if (!account_exist($data['email'])) {
+                    $error['email'] = "* Email chưa được đăng ký thành viên";
+                }
+                if (!$error) {
+                    $email = $_POST['email'];
+                    $email_check = email_check($email);
 
-                $resetCode = substr(md5(rand(100000, 999999)), 0, 10); // 10
-                reset_code_update($resetCode, $email);
-                if (is_array($email_check)) {
-                    $emailSent = user_send_reset_password($email, $resetCode);
-                    if ($emailSent) {
-                        $_SESSION['email'] = $email;
-                        $_SESSION['reset_code'] = $resetCode;
-                        header('Location: index.php?req=reset-code');
-                        exit();
-                    } else {
-                        $message_error = "Có lỗi xảy ra khi gửi email.";
+                    $resetCode = substr(md5(rand(100000, 999999)), 0, 10); // 10
+                    reset_code_update($resetCode, $email);
+                    if (is_array($email_check)) {
+                        $emailSent = user_send_reset_password($email, $resetCode);
+                        if ($emailSent) {
+                            $_SESSION['email'] = $email;
+                            $_SESSION['reset_code'] = $resetCode;
+                            header('Location: index.php?req=reset-code');
+                            exit();
+                        } else {
+                            $message_error = "Có lỗi xảy ra khi gửi email.";
+                        }
                     }
-                } else {
-                    $message_error = "Tài khoản không tồn tại";
                 }
             }
             include("site/auth/forgot-password.php");
             break;
             // Mã xác nhận
         case 'reset-code':
+            // Validate form reset-code
+            $error = [];
+            $data = [];
             if (isset($_POST['submit']) && ($_POST['submit'])) {
-                if ($_POST['resetCode'] == $_SESSION['reset_code']) {
+                $data['resetCode'] = isset($_POST['resetCode']) ? $_POST['resetCode'] : "";
+                if (empty($data['resetCode'])) {
+                    $error['resetCode'] = "* Mã xác nhận không được để trống";
+                } else if ($_POST['resetCode'] != $_SESSION['reset_code']) {
+                    $error['resetCode'] = "* Mã xác nhận không chính xác";
+                }
+                if (!$error) {
                     header('Location: index.php?req=reset-password');
                     exit();
-                } else {
-                    $message_error = "Mã xác nhận không đúng.";
                 }
             }
             include("site/auth/reset-code-form.php");
             break;
             // Đặt lại mật khẩu
         case 'reset-password':
+            // Validate form reset-password
+            $error = [];
+            $data = [];
             if (isset($_POST['submit']) && ($_POST['submit'])) {
-                $email = $_SESSION['email'];
-                $newPassword = $_POST['newPassword'];
-                password_update($newPassword, $email);
-                $message_success = "Cập nhật mật khẩu thành công";
-                // Remove $_SESSION after completion
-                unset($_SESSION['email']);
-                unset($_SESSION['reset_code']);
+                $data['newPassword'] = isset($_POST['newPassword']) ? $_POST['newPassword'] : "";
+                // Validate password
+                if (empty($data['newPassword'])) {
+                    $error['newPassword'] = "* Mật khẩu không được để trống";
+                } else if (strlen($data['newPassword']) < 6) {
+                    $error['newPassword'] = "* Mật khẩu phải có ít nhất 6 ký tự";
+                }
+                if (!$error) {
+                    $email = $_SESSION['email'];
+                    $newPassword = $_POST['newPassword'];
+                    password_update($newPassword, $email);
+                    $message_success = "Cập nhật mật khẩu thành công";
+                    // Remove $_SESSION after completion
+                    unset($_SESSION['email']);
+                    unset($_SESSION['reset_code']);
+                }
             }
             include("site/auth/reset-password-form.php");
             break;

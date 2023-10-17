@@ -8,6 +8,7 @@
                         <label for="newPassword">* Nhập mật khẩu mới:</label>
                         <input class="input-getPassword" type="password" id="newPassword" placeholder="Mật khẩu mới" name="newPassword">
                     </div>
+                    <small class="message-error"><?= isset($error['newPassword']) ? $error['newPassword'] : "" ?></small>
                     <?php
                     if (isset($message_success) && !empty($message_success)) {
                         displayToastrMessageSuccess($message_success);
