@@ -9,8 +9,10 @@
                             <th>STT</th>
                             <th>Mã đơn hàng</th>
                             <th>Trạng thái đơn hàng</th>
+                            <th>Địa chỉ nhận</th>
+                            <th>Điện thoại</th>
                             <th>Ngày tạo đơn</th>
-                            <th>Hành động</th>
+                            <th>Tổng giá trị</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,8 +29,10 @@
                             </td>
                             <td class="product-name"><strong>' . $bill['id'] . '</strong></td>
                             <td class="' . $classNameStatus . '">' . $order_status . '</td>
+                            <td>' . $bill['bill_address'] . '</td>
+                            <td>' . $bill['bill_phone'] . '</td>
                             <td>' . $bill['order_date'] . '</td>
-                            <td>Chi tiết</td>
+                            <td><strong>' . formatCurrency($bill['total']) . '</strong></td>
                         </tr>';
                         }
                         ?>
